@@ -41,7 +41,7 @@ def put_result(query, data):
     cursor_str.execute(query, data)
     mssql_conn.commit()
     mssql_conn.close()
-    return cursor_str.rowcount
+    return ''
 
 
 def put_result_with_data(query):
@@ -79,6 +79,7 @@ def call_prop_col(qry,params):
     column_names = [column[0] for column in cursor_str.description]
     mssql_conn.close()
     return row, column_names
+
 
 def call_prop1(qry, params):
     mssql_conn = get_mssql_connection()

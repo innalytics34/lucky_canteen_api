@@ -1,105 +1,56 @@
 from db_connection import py_connection
+from filter.config import filter_config
 
-def department():
+
+def get_lookup(request,  decoded):
     try:
-        qry = "select * from dbo.Web_task_department where is_active = 1"
-        res, k = py_connection.get_result_col(qry)
+        print(request)
+        lookup_type = request.get('lookup_type')
+        print(lookup_type)
+        data = filter_config.get(lookup_type)
+        response = get_proc(data, request, decoded)
+        return {"data": response}
+    except Exception as e:
+        print(str(e))
+
+
+def get_proc(data, request, decoded):
+    params = data['params']
+    if len(params) > 0:
+        data_lst, param_lst = get_params(data['params'], request, decoded)
+        proc = "{call canteen." + data["data_source"] + "(" + ','.join(param_lst) + ")}"
+        res, k = py_connection.call_prop1(proc, tuple(data_lst))
         lst = []
-        if res and len(res) > 0:
+        if res:
             for row in res:
                 view_data = dict(zip(k, row))
                 lst.append(view_data)
-            return {"dept": lst}
+            return lst
         else:
-            return {"dept": lst}
-    except Exception as e:
-        print(str(e))
-        return {"dept": []}
-
-def main_menu(decoded):
-    try:
-        role_fk = decoded.get("role_fk")
-        print(role_fk)
-        qry = ("select * from dbo.Web_task_menu where is_active = 1 and privilage LIKE "
-               "") + "'%" + str(role_fk) + "%'"
-        res, k = py_connection.get_result_col(qry)
+            return lst
+    else:
+        proc = "{call canteen.{0}}".format(data['data_source'])
+        res, k = py_connection.get_result_col(proc)
         lst = []
-        if res and len(res) > 0:
+        if res:
             for row in res:
                 view_data = dict(zip(k, row))
                 lst.append(view_data)
-            return {"main_menu": lst}
+            return lst
         else:
-            return {"main_menu": lst}
+            return lst
 
-    except Exception as e:
-        print(str(e))
-        return {"main_menu": []}
 
-def get_employee():
-    try:
-        qry = "select employee_pk,concat(first_name,' ',last_name) as emp_name from dbo.Web_task_employee"
-        res, k = py_connection.get_result_col(qry)
-        lst = []
-        if res and len(res) > 0:
-            for row in res:
-                view_data = dict(zip(k, row))
-                lst.append(view_data)
-            return {"emp_list": lst}
+def get_params(params, request, decoded):
+    data_lst = []
+    param_lst = []
+    for row in params:
+        if row['source'] == "request":
+            data_lst.append(request[row["label"]])
+            param_lst.append('?')
         else:
-            return {"emp_list": lst}
+            data_lst.append(decoded[row["label"]])
+            param_lst.append('?')
+    return data_lst, param_lst
 
-    except Exception as e:
-        print(str(e))
-        return {"main_menu": []}
 
-def priority_list():
-    try:
-        qry = "select priority_pk,priority_name from dbo.Web_task_priority where is_active = 1"
-        res, k = py_connection.get_result_col(qry)
-        lst = []
-        if res and len(res) > 0:
-            for row in res:
-                view_data = dict(zip(k, row))
-                lst.append(view_data)
-            return {"priority_list": lst}
-        else:
-            return {"priority_list": lst}
-
-    except Exception as e:
-        print(str(e))
-        return {"priority_list": []}
-
-def get_task_type():
-    try:
-        qry = "select tasktype_pk,tasktype_name from dbo.Web_task_tasktype where is_active = 1"
-        res, k = py_connection.get_result_col(qry)
-        lst = []
-        if res and len(res) > 0:
-            for row in res:
-                view_data = dict(zip(k, row))
-                lst.append(view_data)
-            return {"task_type": lst}
-        else:
-            return {"task_type": lst}
-
-    except Exception as e:
-        print(str(e))
-        return {"task_type": []}
-
-def status_type():
-    try:
-        qry = "select status_pk,status_name from dbo.Web_task_taskstatus where is_active = 1"
-        res, k = py_connection.get_result_col(qry)
-        lst = []
-        if res and len(res) > 0:
-            for row in res:
-                view_data = dict(zip(k, row))
-                lst.append(view_data)
-            return {"status_type": lst}
-        else:
-            return {"status_type": lst}
-
-    except Exception as e:
-        print(str(e))
-        return {"status_type": []}
