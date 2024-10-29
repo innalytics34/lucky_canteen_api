@@ -1,11 +1,11 @@
 from db_connection import py_connection
-from filter.config import filter_config
+from fetch import fetch_config
 
 
-def get_lookup(request,  decoded):
+def fetch_data(request,  decoded):
     try:
-        lookup_type = request.get('lookup_type')
-        data = filter_config.get(lookup_type)
+        fetch_type = request.get('fetch_type')
+        data = fetch_config.fetch_config.get(fetch_type)
         response = get_proc(data, request, decoded)
         return {"data": response}
     except Exception as e:

@@ -84,7 +84,7 @@ def call_prop_col(qry,params):
 def call_prop1(qry, params):
     mssql_conn = get_mssql_connection()
     cursor_str = mssql_conn.cursor()
-    cursor_str.execute(qry,params)
+    cursor_str.execute(qry, params)
     row = cursor_str.fetchall()
     column_names = [column[0] for column in cursor_str.description]
     mssql_conn.close()
