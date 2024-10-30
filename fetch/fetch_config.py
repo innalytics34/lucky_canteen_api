@@ -38,4 +38,30 @@ fetch_config = {
             }
         ]
     },
+    "UOMMaster": {
+        "data_source": "Bis_UOMMaster_SelectByField",
+        "params": [
+            {
+                "label": 'fieldName',
+                "source": "request"
+            },
+            {
+                "label": 'UID',
+                "source": "request"
+            }
+        ]
+    },
+    "UOMConversion": {
+        "data_source": "Bis_UOMConversion_SelectByField",
+        "params": [
+            {
+                "label": 'fieldName',
+                "source": "request"
+            },
+            {
+                "label": 'UID',
+                "source": "request"
+            }
+        ]
+    },
 }

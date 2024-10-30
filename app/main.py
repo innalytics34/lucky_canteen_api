@@ -9,6 +9,9 @@ from fetch import py_fetch
 from filter import py_filter
 from login import py_login
 import json
+
+from uom import py_uom
+
 auth_scheme = py_jwt.JWTBearer()
 
 app = FastAPI()
@@ -75,6 +78,26 @@ async def delete_data(request: Request):
         request = await request.json()
         decoded = {'branch_id': 100000, "user_id": 1}
         response = py_delete.delete_data(request, decoded)
+        return response
+    except Exception as e:
+        print(str(e))
+
+
+@app.post("/canteen/uom_insert_update")
+async def uom_insert_update(request: Request):
+    try:
+        request = await request.json()
+        response = py_uom.uom_insert_update(request)
+        return response
+    except Exception as e:
+        print(str(e))
+
+
+@app.post("/canteen/uomconversion_insert_update")
+async def uomconversion_insert_update(request: Request):
+    try:
+        request = await request.json()
+        response = py_uom.uomconversion_insert_update(request)
         return response
     except Exception as e:
         print(str(e))

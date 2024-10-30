@@ -30,7 +30,6 @@ def accountM(request, decoded):
                        AccountMContactsXML, accountM_uid)
             response = "updated"
         else:
-            print("--------------6")
             element_name_contact = "AccountMContact"
             element_name_address = "AccountMAddress"
             AccountMXML = AccountM(accountM, decoded, AccountTypeM_UID)
@@ -121,7 +120,6 @@ def svt_update(AccountMXML, accountMaddressXML, accountMaddresssXML, AccountMCon
 
 
 def svt_insert(AccountMInsert, accountMaddressXML, AccountMContactXML):
-    print("-----------56")
     res = py_connection.put_result("{call Canteen.Bis_AccountM_Insert"
                              "(?,?,?,?,?,?,?,?,?,?,?,?,?)}",
                              (AccountMInsert, AccountMContactXML, '', '', '', '', '', '',
