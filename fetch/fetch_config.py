@@ -64,4 +64,39 @@ fetch_config = {
             }
         ]
     },
+"GSTSlab": {
+        "data_source": "bis_Lookup_GSTSlab",
+        "params": []
+    },
+"UOM": {
+        "data_source": "bis_Lookup_UOM",
+        "params": [
+            {
+                "label": 'BaseUOM',
+                "source": "request"
+            }
+        ]
+    },
+
+"HSNSAC": {
+        "data_source": "bis_Lookup_HSNSAC",
+        "params": []
+    },
+"TaxType": {
+        "data_source": "bis_HSNSACMaster_TaxType",
+        "params": []
+    },
+"ItemsForItemMaster": {
+        "data_source": "bis_Lookup_ItemsForItemMaster",
+        "params": [
+            {
+                "label": 'branch_id',
+                "source": "request"
+            }
+        ]
+    },
+"Status": {
+        "data_source": "bis_Lookup_Status",
+        "params": []
+    },
 }

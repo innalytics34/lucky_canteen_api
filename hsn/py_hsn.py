@@ -20,12 +20,14 @@ def hsn_insert_update(request):
         GSTPaySlab_UID = request.get("GSTPaySlab_UID")
 
         if UID not in [0, '0', '']:
-            values = (UID, HSNSACCode, BranchID, ShortDescription, LongDescription, Type, CGST, SGST, IGST)
+            values = (UID, HSNSACCode, BranchID, ShortDescription, LongDescription, Type, CGST, SGST, IGST,
+                      CustomDuty, Active, AED, CESS1, CESS2, GSTPaySlab_UID)
             py_connection.put_result("{call Canteen.Bis_HSNSACMaster_Update"
                                      "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}", values)
             stat = "updated"
         else:
-            values = ()
+            values = (UID, HSNSACCode, BranchID, ShortDescription, LongDescription, Type, CGST, SGST, IGST,
+                      CustomDuty, Active, AED, CESS1, CESS2, GSTPaySlab_UID)
             py_connection.put_result("{call Canteen.Bis_HSNSACMaster_Insert"
                                      "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}", values)
             stat = "inserted"
