@@ -4,8 +4,10 @@ from filter.config import filter_config
 
 def get_lookup(request,  decoded):
     try:
+        print(request, "---------t")
         lookup_type = request.get('lookup_type')
         data = filter_config.get(lookup_type)
+        print(data)
         response = get_proc(data, request, decoded)
         return {"data": response}
     except Exception as e:
@@ -27,7 +29,8 @@ def get_proc(data, request, decoded):
         else:
             return lst
     else:
-        proc = "{call canteen.{0}}".format(data['data_source'])
+        proc = "{{call canteen.{0}}}".format(data['data_source'])
+        print(proc)
         res, k = py_connection.get_result_col(proc)
         lst = []
         if res:

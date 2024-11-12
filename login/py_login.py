@@ -16,11 +16,13 @@ def fn_login(request):
         encrypted_password = encrypt_password(encrypted_password, key)
         company_id = request.get("company_id")
         company_name = request.get("company_name")
-        qry = '{call core.[bis_EmployeeDetails_Select_ByUId_PWD] (?, ?)}'
-        res, k = py_connection.call_prop1(qry, (request['emp_fk'], 1))
+        state_code = request.get("StateCode")
+        qry = '{call canteen.[bis_EmployeeDetails_Select_ByUId_PWD] (?)}'
+        res, k = py_connection.call_prop1(qry, (request['emp_fk']))
+        print(res, k)
         db_password = res[0][1]
         if db_password == encrypted_password:
-            token = signJWT(username, branch_id, year, request['emp_fk'], company_id, company_name)
+            token = signJWT(username, branch_id, year, request['emp_fk'], company_id, company_name, state_code)
             return {"message": "Login successfully", "rval": 1, "token": token}
         else:
             return {"message": "Username or password is incorrect", "rval": 0, "data": [],  "token": ""}

@@ -25,4 +25,24 @@ filter_config = {
             }
         ]
     },
+
+"GSTSlab": {
+        "data_source": "bis_Lookup_GSTSlab",
+        "params": []
+    },
+"TaxType": {
+        "data_source": "bis_HSNSACMaster_TaxType",
+        "params": []
+    },
+"hsn": {
+        "data_source": "bis_HSNSACMaster_TaxType",
+        "params": []
+    },
+"UOM": {
+        "data_source": "bis_Lookup_UOM",
+        "params": [{
+            "label": "BaseUOM",
+             "source": "request"
+        }]
+    },
 }

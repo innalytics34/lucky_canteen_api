@@ -64,20 +64,6 @@ fetch_config = {
             }
         ]
     },
-"GSTSlab": {
-        "data_source": "bis_Lookup_GSTSlab",
-        "params": []
-    },
-"UOM": {
-        "data_source": "bis_Lookup_UOM",
-        "params": [
-            {
-                "label": 'BaseUOM',
-                "source": "request"
-            }
-        ]
-    },
-
 "HSNSAC": {
         "data_source": "bis_Lookup_HSNSAC",
         "params": []
@@ -98,5 +84,30 @@ fetch_config = {
 "Status": {
         "data_source": "bis_Lookup_Status",
         "params": []
+    },
+"hsn": {
+        "data_source": "Bis_HSNSACMaster_SelectAll",
+        "params": []
+    },
+"add_charges": {
+        "data_source": "bis_CanteenProductMaster_SelectAll",
+        "params": []
+    },
+"add_charges_all": {
+        "data_source": "Bis_AdditionalCharges_SelectAll",
+        "params": []
+    },
+"product_master_by_fields": {
+        "data_source": "bis_CanteenProductMaster_SelectByField",
+        "params": [
+            {
+            "label": 'fieldName',
+            "source": "request"
+            },
+            {
+            "label": 'UID',
+            "source": "request"
+            },
+        ]
     },
 }

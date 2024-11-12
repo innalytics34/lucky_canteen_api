@@ -17,7 +17,7 @@ def product_master(data, decoded):
                 f'ActiveStatus="{row.get("ActiveStatus", "")}" '
                 f'CreatedBy="{decoded.get("user_id", "")}" '
                 f'CreatedOn="{dt.now()}" '
-                f'UpdatedBy="{row.get("user_id", "")}" '
+                f'UpdatedBy="{decoded.get("user_id", "")}" '
                 f'UpdatedOn="{dt.now()}" '
                 f'ProductCategory="{row.get("ProductCategory", "")}" '
                 '/>\n'
@@ -103,3 +103,48 @@ def item_master(data):
         return xml_data
     except Exception as e:
         print("item_master " + str(e))
+
+
+def item_master_list(data, decoded):
+    try:
+        xml_data = '<ItemMasterList>\n'
+        for row in data:
+            xml_data += '    <ItemMasterList\n'
+            xml_data += f'        UID="{row.get("UID")}"\n'
+            xml_data += f'        ItemMasterID="{row.get("ItemMasterID")}"\n'
+            xml_data += f'        RawMaterialID="{row.get("RawMaterialID")}"\n'
+            xml_data += f'        RawMaterialDescription="{row.get("RawMaterialDescription")}"\n'
+            xml_data += f'        PartNo="{row.get("PartNo")}"\n'
+            xml_data += f'        ItemTypeID="{row.get("ItemTypeID")}"\n'
+            xml_data += f'        ItemType="{row.get("ItemType")}"\n'
+            xml_data += f'        UOM="{row.get("UOM")}"\n'
+            xml_data += f'        UOMID="{row.get("UOMID")}"\n'
+            xml_data += f'        Qty="{row.get("Qty")}"\n'
+            xml_data += f'        Status="{row.get("Status")}"\n'
+            xml_data += f'        Remarks="{row.get("Remarks")}"\n'
+            xml_data += f'        WorkFlowStatus="{row.get("WorkFlowStatus")}"\n'
+            xml_data += f'        CreatedBy="{decoded.get("user_id")}"\n'
+            xml_data += f'        CreatedDate="{dt.now()}"\n'
+            xml_data += f'        UpdatedBy="{decoded.get("user_id")}"\n'
+            xml_data += f'        UpdatedDate="{dt.now()}"\n'
+            xml_data += f'        ADDT1=" "\n'
+            xml_data += f'        ADDT2=" "\n'
+            xml_data += f'        ADDT3=" "\n'
+            xml_data += f'        ADDT4=" "\n'
+            xml_data += f'        ADDI1=" "\n'
+            xml_data += f'        ADDI2="{0}"\n'
+            xml_data += f'        ADDI3="{0}"\n'
+            xml_data += f'        ADDI4="{0}"\n'
+            xml_data += f'        ADDD1="{0}"\n'
+            xml_data += f'        ADDD2="{0}"\n'
+            xml_data += f'        ADDD3="{0}"\n'
+            xml_data += f'        ADDD4="{0}"\n'
+            xml_data += f'        ADDDT1="{dt.now()}"\n'
+            xml_data += f'        ADDDT2="{dt.now()}"\n'
+            xml_data += f'        ADDDT3="{dt.now()}"\n'
+            xml_data += f'        ADDDT4="{dt.now()}"\n'
+            xml_data += '    />\n'
+        xml_data += '</ItemMasterList>'
+        return xml_data
+    except Exception as e:
+        print("item_master_list " + str(e))

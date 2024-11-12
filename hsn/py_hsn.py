@@ -1,11 +1,12 @@
 from db_connection import py_connection
 
 
-def hsn_insert_update(request):
+def hsn_insert_update(request, decoded):
     try:
+        print(request)
         UID = request.get("UID")
         HSNSACCode = request.get("HSNSACCode")
-        BranchID = request.get("BranchID")
+        BranchID = decoded.get("branch_id")
         ShortDescription = request.get("ShortDescription")
         LongDescription = request.get("LongDescription")
         Type = request.get("Type")

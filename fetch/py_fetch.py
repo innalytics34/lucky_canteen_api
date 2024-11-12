@@ -27,7 +27,7 @@ def get_proc(data, request, decoded):
         else:
             return lst
     else:
-        proc = "{call canteen.{0}}".format(data['data_source'])
+        proc = "{{call canteen.{0}}}".format(data['data_source'])
         res, k = py_connection.get_result_col(proc)
         lst = []
         if res:

@@ -5,12 +5,15 @@ from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from auth import py_keys
 
 
-def signJWT(username, emp_fk, role_fk, dept_fk):
+def signJWT(username, branch_id, year, emp_fk, company_id, company_name, state_code):
     payload = {
         "username": username,
-        "emp_fk": emp_fk,
-        "role_fk": role_fk,
-        "dept_fk": dept_fk,
+        "branch_id": branch_id,
+        "year": year,
+        "user_id": emp_fk,
+        "company_id": company_id,
+        "company_name": company_name,
+        "state_code": state_code,
         "expiry": time.time() + py_keys.exp_hrs * 3600,  # number of hours
     }
     token = jwt.encode(payload, py_keys.jwt_secret, algorithm=py_keys.jwt_algorithm)

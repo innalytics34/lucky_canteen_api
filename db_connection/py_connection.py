@@ -71,10 +71,10 @@ def call_prop(qry,params):
     return cursor_str.rowcount
 
 
-def call_prop_col(qry,params):
+def call_prop_col(qry, params):
     mssql_conn = get_mssql_connection()
     cursor_str = mssql_conn.cursor()
-    cursor_str.execute(qry,params)
+    cursor_str.execute(qry, params)
     row = cursor_str.fetchall()
     column_names = [column[0] for column in cursor_str.description]
     mssql_conn.close()
@@ -89,3 +89,13 @@ def call_prop1(qry, params):
     column_names = [column[0] for column in cursor_str.description]
     mssql_conn.close()
     return row, column_names
+
+
+def call_prop_return_pk(qry, params):
+    mssql_conn = get_mssql_connection()
+    cursor = mssql_conn.cursor()
+    cursor.execute(qry, params)
+    output_id = cursor.fetchone()[0]
+    mssql_conn.commit()
+    mssql_conn.close()
+    return output_id
