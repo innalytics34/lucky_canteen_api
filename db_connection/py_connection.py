@@ -9,6 +9,7 @@ load_dotenv(env_path)
 
 def get_mssql_connection():
     try:
+
         conn = pyodbc.connect('DRIVER={' + os.getenv("DRIVER") + '};SERVER=' + os.getenv("HOST") + ';DATABASE=' + os.getenv("DB") + ';UID=' + os.getenv("USER") +';PWD=' + os.getenv(
             "PASSWORD") + '')
         return conn
@@ -62,7 +63,7 @@ def put_result_exe_many(qry, pram):
     return cursor_str.rowcount
 
 
-def call_prop(qry,params):
+def call_prop(qry, params):
     mssql_conn = get_mssql_connection()
     cursor_str = mssql_conn.cursor()
     cursor_str.execute(qry, params)
@@ -99,3 +100,13 @@ def call_prop_return_pk(qry, params):
     mssql_conn.commit()
     mssql_conn.close()
     return output_id
+
+
+def call_prop_col_without_param(qry):
+    mssql_conn = get_mssql_connection()
+    cursor_str = mssql_conn.cursor()
+    cursor_str.execute(qry)
+    row = cursor_str.fetchall()
+    column_names = [column[0] for column in cursor_str.description]
+    mssql_conn.close()
+    return row, column_names

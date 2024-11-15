@@ -110,4 +110,8 @@ fetch_config = {
             },
         ]
     },
+    "uomMaster": {
+        "data_source": "Bis_UOMMaster_SelectAll",
+        "params": []
+    }
 }

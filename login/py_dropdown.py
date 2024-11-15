@@ -5,6 +5,7 @@ def cy():
     try:
         company = CompanyName()
         year = Year()
+        print(year)
         return {"CompanyName": company, "Year": year}
     except Exception as e:
         print(str(e))
@@ -52,13 +53,12 @@ def Year():
     try:
         qry = '{call canteen.bis_Lookup_FinancialYear}'
         res, k = py_connection.call_prop_col_without_param(qry)
+        print(res)
         lst = []
         if res and len(res) > 0:
             for row in res:
                 view_data = dict(zip(k, row))
-                UID = view_data['UID']
-                Description = view_data['DispYear']
-                lst.append({"UID": UID, "Description": Description})
+                lst.append(view_data)
             return lst
         else:
             return lst
@@ -69,7 +69,7 @@ def Year():
 
 def UserName(request):
     try:
-        qry = '{canteen.bis_EmployeeM_Select_User_Branch (?)}'
+        qry = '{call canteen.bis_EmployeeM_Select_User(?)}'
         res, k = py_connection.call_prop1(qry, (request['branch_id'],))
         lst = []
         if res and len(res) > 0:

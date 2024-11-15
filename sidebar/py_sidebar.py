@@ -4,7 +4,8 @@ from sidebar.user_rights import ScreenRightsAsPerEmployee
 
 def GetMenu(decoded):
     try:
-        emp_fk = decoded.get('user_id')
+        # emp_fk = decoded.get('user_id')
+        emp_fk = 1
         if emp_fk in [1, 2]:
             main_menu = GetMenuNames()
             lst = main_menu['main_menu']
@@ -39,6 +40,7 @@ def GetMenu(decoded):
 
                 return result
             lst = build_menu(menus['main_menu'])
+            print(lst)
         return {"main_menu": lst}
     except Exception as e:
         print(str(e))

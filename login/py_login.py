@@ -9,6 +9,7 @@ key = b'Binary--Solution'
 
 def fn_login(request):
     try:
+        print(request)
         username = request.get("username")
         encrypted_password = request.get("password")
         branch_id = request.get('branch_id')
@@ -19,7 +20,7 @@ def fn_login(request):
         state_code = request.get("StateCode")
         qry = '{call canteen.[bis_EmployeeDetails_Select_ByUId_PWD] (?)}'
         res, k = py_connection.call_prop1(qry, (request['emp_fk']))
-        print(res, k)
+        print(res)
         db_password = res[0][1]
         if db_password == encrypted_password:
             token = signJWT(username, branch_id, year, request['emp_fk'], company_id, company_name, state_code)

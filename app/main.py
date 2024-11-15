@@ -203,7 +203,5 @@ async def generalMaster_insert_update(request: Request):
         print(str(e))
 
 
-
-
 if __name__ =="__main__":
     run(app, host='0.0.0.0', port=8065)
