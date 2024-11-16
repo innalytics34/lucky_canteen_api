@@ -14,6 +14,7 @@ import json
 
 from product import py_pmrm, py_pmim, py_product
 from sidebar import py_sidebar
+from transaction.purchase_order import py_purchase_order
 from uom import py_uom
 
 auth_scheme = py_jwt.JWTBearer()
@@ -198,6 +199,17 @@ async def generalMaster_insert_update(request: Request):
         request = await request.json()
         decoded = {'branch_id': 100000, "user_id": 1}
         response = py_generalMaster.generalMaster_insert_update(request, decoded)
+        return response
+    except Exception as e:
+        print(str(e))
+
+
+@app.post("/canteen/po_insert_update")
+async def po_insert_update(request: Request):
+    try:
+        request = await request.json()
+        decoded = {'branch_id': 100000, "user_id": 1}
+        response = py_purchase_order.po_insert_update(request, decoded)
         return response
     except Exception as e:
         print(str(e))

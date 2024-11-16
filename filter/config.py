@@ -44,8 +44,7 @@ filter_config = {
             "label": "BaseUOM",
              "source": "request"
         }]
-    }
-,
+    },
     "baseUOM": {
         "data_source": "bis_Lookup_BaseUOM",
         "params": [
@@ -54,5 +53,9 @@ filter_config = {
             "source": "request"
             },
         ]
-    }
+    },
+"Status": {
+        "data_source": "bis_Lookup_Status",
+        "params": []
+    },
 }

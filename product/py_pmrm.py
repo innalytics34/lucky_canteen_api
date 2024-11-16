@@ -4,6 +4,7 @@ from product.PRMI_config import product_master, raw_material
 
 def pmrm_insert_update(request, decoded):
     try:
+        print(request, "-------fg")
         UID = request.get("UID")
         ProductMasterXML = product_master(request.get("purchase_master"), decoded)
         RawMaterialMaster = raw_material(request.get("raw_material"))

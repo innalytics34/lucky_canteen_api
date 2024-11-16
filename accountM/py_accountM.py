@@ -3,7 +3,6 @@ from db_connection import py_connection
 
 
 def accountM(request, decoded):
-    print(request)
     form_type = request.get('form_type')
     accountM_uid = request.get('accountM_uid')
     accountMAddress = request.get('accountMAddress')

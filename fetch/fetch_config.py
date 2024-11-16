@@ -113,5 +113,18 @@ fetch_config = {
     "uomMaster": {
         "data_source": "Bis_UOMMaster_SelectAll",
         "params": []
-    }
+    },
+   "UOMConversionAll": {
+        "data_source": "bis_Search_UOM",
+        "params": []
+    },
+  "UOMConversionByField": {
+        "data_source": "bis_Search_UOM",
+        "params": []
+    },
+"RawMaterialMaster_SelectAll": {
+        "data_source": "bis_RawMaterialMaster_SelectAll",
+        "params": []
+    },
+
 }
