@@ -4,6 +4,7 @@ from transaction.purchase_order.po_config import (purchase_order_xml,
 
 
 def po_insert_update(request, decoded):
+    print(request, '0101')
     CanteenPurchaseOrderXML = purchase_order_xml(request['purchase_order'], decoded)
     CanteenPurchaseOrderListXML = purchase_order_list_xml(request['po_list'], decoded)
     CanteenPurchaseOrderChargesXML = purchase_order_charges_xml(request['po_charges'], decoded)
