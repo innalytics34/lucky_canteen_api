@@ -7,7 +7,7 @@ def get_lookup(request,  decoded):
         print(request, "---------t")
         lookup_type = request.get('lookup_type')
         data = filter_config.get(lookup_type)
-        print(data)
+        print(data, '00000')
         response = get_proc(data, request, decoded)
         return {"data": response}
     except Exception as e:
@@ -19,7 +19,9 @@ def get_proc(data, request, decoded):
     if len(params) > 0:
         data_lst, param_lst = get_params(data['params'], request, decoded)
         proc = "{call canteen." + data["data_source"] + "(" + ','.join(param_lst) + ")}"
+        print(proc, '123')
         res, k = py_connection.call_prop1(proc, tuple(data_lst))
+        print(res, k, '99')
         lst = []
         if res:
             for row in res:

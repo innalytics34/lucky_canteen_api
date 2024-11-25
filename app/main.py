@@ -76,10 +76,10 @@ async def login(request: Request):
 
 
 @app.get("/canteen/get_lookup")
-async def get_lookup(data: str = "{}"):
+async def get_lookup(data: str = "{}", decoded=Depends(auth_scheme)):
     try:
         request = json.loads(data)
-        response = py_filter.get_lookup(request, {})
+        response = py_filter.get_lookup(request, decoded)
         return response
     except Exception as e:
         print(str(e))

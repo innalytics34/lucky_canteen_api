@@ -7,22 +7,22 @@ fetch_config = {
                 "source": "request"
             },
             {
-            "label": 'AccountTypeM_UID',
-            "source": "request"
+                "label": 'AccountTypeM_UID',
+                "source": "request"
             }
         ]
     },
-   "accountMAddress": {
+    "accountMAddress": {
         "data_source": "bis_AccountMAddress_SelectByField",
         "params": [
                  {
                     "label": 'fieldName',
                     "source": "request"
-                },
+                 },
                  {
                     "label": 'AccountID',
                     "source": "request"
-                }
+                 }
             ]
     },
     "accountMContact": {
@@ -64,15 +64,15 @@ fetch_config = {
             }
         ]
     },
-"HSNSAC": {
+    "HSNSAC": {
         "data_source": "bis_Lookup_HSNSAC",
         "params": []
     },
-"TaxType": {
+    "TaxType": {
         "data_source": "bis_HSNSACMaster_TaxType",
         "params": []
     },
-"ItemsForItemMaster": {
+    "ItemsForItemMaster": {
         "data_source": "bis_Lookup_ItemsForItemMaster",
         "params": [
             {
@@ -81,32 +81,32 @@ fetch_config = {
             }
         ]
     },
-"Status": {
+    "Status": {
         "data_source": "bis_Lookup_Status",
         "params": []
     },
-"hsn": {
+    "hsn": {
         "data_source": "Bis_HSNSACMaster_SelectAll",
         "params": []
     },
-"add_charges": {
+    "add_charges": {
         "data_source": "bis_CanteenProductMaster_SelectAll",
         "params": []
     },
-"add_charges_all": {
+    "add_charges_all": {
         "data_source": "Bis_AdditionalCharges_SelectAll",
         "params": []
     },
-"product_master_by_fields": {
+    "product_master_by_fields": {
         "data_source": "bis_CanteenProductMaster_SelectByField",
         "params": [
             {
-            "label": 'fieldName',
-            "source": "request"
+                "label": 'fieldName',
+                "source": "request"
             },
             {
-            "label": 'UID',
-            "source": "request"
+                "label": 'UID',
+                "source": "request"
             },
         ]
     },
@@ -114,17 +114,16 @@ fetch_config = {
         "data_source": "Bis_UOMMaster_SelectAll",
         "params": []
     },
-   "UOMConversionAll": {
+    "UOMConversionAll": {
         "data_source": "bis_Search_UOM",
         "params": []
     },
-  "UOMConversionByField": {
+    "UOMConversionByField": {
         "data_source": "bis_Search_UOM",
         "params": []
     },
-"RawMaterialMaster_SelectAll": {
+    "RawMaterialMaster_SelectAll": {
         "data_source": "bis_RawMaterialMaster_SelectAll",
         "params": []
     },
-
 }
