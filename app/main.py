@@ -108,10 +108,10 @@ async def accountM(request: Request):
 
 
 @app.get("/canteen/fetch_data")
-async def fetch_data(data: str = "{}"):
+async def fetch_data(data: str = "{}", decoded=Depends(auth_scheme)):
     try:
         request = json.loads(data)
-        response = py_fetch.fetch_data(request, {})
+        response = py_fetch.fetch_data(request, decoded)
         return response
     except Exception as e:
         print(str(e))

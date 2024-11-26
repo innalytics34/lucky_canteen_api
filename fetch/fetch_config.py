@@ -126,4 +126,73 @@ fetch_config = {
         "data_source": "bis_RawMaterialMaster_SelectAll",
         "params": []
     },
+    "PO_SearchView": {
+        "data_source": "bis_Search_CanteenPurchaseOrder",
+        "params": [
+            {
+                "label": "branch_id",
+                "source": "decoded"
+            },
+            {
+                "label": "year",
+                "source": "decoded"
+            },
+            {
+                "label": "document_type_id",  # 80200
+                "source": "request"
+            }
+        ]
+    },
+    "PO_PurchaseOrder": {
+        "data_source": "bis_CanteenPurchaseOrder_SelectByField",
+        "params": [
+            {
+                "label": "field_name",  # UID
+                "source": "request"
+            },
+            {
+                "label": "value",
+                "source": "request"
+            }
+        ]
+    },
+    "PO_PurchaseOrderList": {
+        "data_source": "bis_CanteenPurchaseOrderList_SelectByField",
+        "params": [
+            {
+                "label": "field_name",  # CanteenPurchaseOrderID
+                "source": "request"
+            },
+            {
+                "label": "value",
+                "source": "request"
+            }
+        ]
+    },
+    "PO_PurchaseOrderCharges": {
+        "data_source": "bis_CanteenPurchaseOrderCharges_SelectByField",
+        "params": [
+            {
+                "label": "field_name",  # CanteenPurchaseOrderID
+                "source": "request"
+            },
+            {
+                "label": "value",
+                "source": "request"
+            }
+        ]
+    },
+    "PO_PurchaseOrderTerms": {
+        "data_source": "bis_CanteenPurchaseOrderTerms_SelectByField",
+        "params": [
+            {
+                "label": "field_name",  # CanteenPurchaseOrderID
+                "source": "request"
+            },
+            {
+                "label": "value",
+                "source": "request"
+            }
+        ]
+    },
 }

@@ -6,6 +6,7 @@ def fetch_data(request,  decoded):
     try:
         fetch_type = request.get('fetch_type')
         data = fetch_config.fetch_config.get(fetch_type)
+        print(data, '022')
         response = get_proc(data, request, decoded)
         return {"data": response}
     except Exception as e:
@@ -17,6 +18,7 @@ def get_proc(data, request, decoded):
     if len(params) > 0:
         data_lst, param_lst = get_params(data['params'], request, decoded)
         proc = "{call canteen." + data["data_source"] + "(" + ','.join(param_lst) + ")}"
+        print(proc, '1001')
         res, k = py_connection.call_prop1(proc, tuple(data_lst))
         lst = []
         if res:
