@@ -126,6 +126,49 @@ fetch_config = {
         "data_source": "bis_RawMaterialMaster_SelectAll",
         "params": []
     },
+    "IM_SearchView": {
+        "data_source": "bis_Search_ItemMaster_Master",
+        "params": []
+    },
+    "IM_ProductMaster": {
+        "data_source": "bis_CanteenProductMaster_SelectByField",
+        "params": [
+            {
+                "label": "field_name",
+                "source": "request"
+            },
+            {
+                "label": "value",
+                "source": "request"
+            }
+        ]
+    },
+    "IM_ItemMaster": {
+        "data_source": "bis_ItemMaster_SelectByField",
+        "params": [
+            {
+                "label": "field_name",
+                "source": "request"
+            },
+            {
+                "label": "value",
+                "source": "request"
+            }
+        ]
+    },
+    "IM_ItemMasterList": {
+        "data_source": "bis_ItemMasterList_SelectByField",
+        "params": [
+            {
+                "label": "field_name",
+                "source": "request"
+            },
+            {
+                "label": "value",
+                "source": "request"
+            }
+        ]
+    },
     "PO_SearchView": {
         "data_source": "bis_Search_CanteenPurchaseOrder",
         "params": [

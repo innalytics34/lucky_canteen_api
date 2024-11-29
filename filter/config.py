@@ -39,10 +39,12 @@ filter_config = {
         },
     "UOM": {
             "data_source": "bis_Lookup_UOM",
-            "params": [{
-                "label": "BaseUOM",
-                "source": "request"
-            }]
+            "params": [
+                {
+                    "label": "BaseUOM",
+                    "source": "request"
+                }
+            ]
         },
     "baseUOM": {
         "data_source": "bis_Lookup_BaseUOM",
@@ -56,7 +58,7 @@ filter_config = {
     "Status": {
             "data_source": "bis_Lookup_Status",
             "params": []
-        },
+    },
     "PO_Supplier": {
         "data_source": "Bis_Lookup_Supplier_All",
         "params": []

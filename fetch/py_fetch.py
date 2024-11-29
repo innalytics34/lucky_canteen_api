@@ -4,7 +4,9 @@ from fetch import fetch_config
 
 def fetch_data(request,  decoded):
     try:
+        print(request, '000')
         fetch_type = request.get('fetch_type')
+        print(fetch_type, '029')
         data = fetch_config.fetch_config.get(fetch_type)
         print(data, '022')
         response = get_proc(data, request, decoded)

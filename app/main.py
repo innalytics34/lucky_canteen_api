@@ -182,10 +182,9 @@ async def pmrm_insert_update(request: Request):
 
 
 @app.post("/canteen/pmim_insert_update")
-async def pmim_insert_update(request: Request):
+async def pmim_insert_update(request: Request, decoded=Depends(auth_scheme)):
     try:
         request = await request.json()
-        decoded = {'branch_id': 100000, "user_id": 1}
         response = py_pmim.pmim_insert_update(request, decoded)
         return response
     except Exception as e:
