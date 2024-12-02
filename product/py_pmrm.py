@@ -18,7 +18,7 @@ def pmrm_insert_update(request, decoded):
         else:
             values = (ProductMasterXML, RawMaterialMaster, ProductCode, 0)
             py_connection.put_result("{call Canteen.Bis_ProductMaster_RawMaterialMaster"
-                                 "(?,?,?,?)}", values)
+                                     "(?,?,?,?)}", values)
             stat = "inserted"
         return {"message": "Data " + stat + " successfully", "rval": 1}
     except Exception as e:

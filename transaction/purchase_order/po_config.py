@@ -1,7 +1,9 @@
 from datetime import datetime as dt
+from login.py_dropdown import Year
 
 
 def purchase_order_xml(data, decoded):
+    print(data, '0202')
     try:
         xml_data = '<CanteenPurchaseOrder>\n'
         for row in data:
@@ -12,7 +14,7 @@ def purchase_order_xml(data, decoded):
                 f'BranchID="{decoded["branch_id"]}" '
                 f'LongDocumentNo="{row["LongDocumentNo"]}" '
                 f'DocumentDate="{row["DocumentDate"]}" '
-                f'Year="{row["Year"]}" '
+                f'Year="{Year()[0]["Yr"]}" '
                 f'DocumentType_UID="{row["DocumentType_UID"]}" '
                 f'ReferenceNo="{row["ReferenceNo"]}" '
                 f'ReferenceDate="{row["ReferenceDate"]}" '
@@ -195,7 +197,7 @@ def purchase_order_charges_xml(data, decoded):
         xml_data += '</CanteenPurchaseOrderCharges>'
         return xml_data
     except Exception as e:
-        print("Error in purchase_order_list_xml: " + str(e))
+        print("Error in purchase_order_charges_xml: " + str(e))
         return None
 
 
@@ -220,5 +222,5 @@ def purchase_order_terms_xml(data, decoded):
         xml_data += '</CanteenPurchaseOrderTerms>'
         return xml_data
     except Exception as e:
-        print("Error in purchase_order_list_xml: " + str(e))
+        print("Error in purchase_order_terms_xml: " + str(e))
         return None

@@ -7,7 +7,9 @@ def product_master(data, decoded):
         for row in data:
             xml_data += (
                 '    <CanteenProductMaster '
+                f'UID="{row.get("UID", 0)}" '
                 f'BranchId="{decoded.get("branch_id", "")}" '
+                f'ProductCode="{row.get("ProductCode", "")}" '
                 f'ProductDescription="{row.get("ProductDescription", "")}" '
                 f'UOMID="{row.get("UOMID", "")}" '
                 f'UOMDescription="{row.get("UOMDescription", "")}" '
@@ -73,7 +75,9 @@ def item_master(data):
         for row in data:
             xml_data += (
                 '    <ItemMaster '
+                f'UID="{row.get("UID", 0)}" '
                 f'PartNo="{row.get("PartNo", "")}" '
+                f'ItemCode="{row.get("ItemCode", "")}" '
                 f'ItemDescription="{row.get("ItemDescription", "")}" '
                 f'Qty="{row.get("Qty", "")}" '
                 f'Status="{row.get("Status", "")}" '

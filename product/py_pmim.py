@@ -6,6 +6,7 @@ def pmim_insert_update(request, decoded):
     try:
         print(request, '002')
         UID = request.get("UID")
+        print(UID, '001')
         ProductMasterXML = product_master(request.get("purchase_master"), decoded)
         print(ProductMasterXML, '091')
         ItemMaster = item_master(request.get("item_master"))

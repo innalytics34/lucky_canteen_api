@@ -53,7 +53,6 @@ def Year():
     try:
         qry = '{call canteen.bis_Lookup_FinancialYear}'
         res, k = py_connection.call_prop_col_without_param(qry)
-        print(res)
         lst = []
         if res and len(res) > 0:
             for row in res:
@@ -65,7 +64,6 @@ def Year():
     except Exception as e:
         print(str(e))
         return []
-
 
 def UserName(request):
     try:
