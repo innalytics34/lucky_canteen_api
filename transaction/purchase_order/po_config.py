@@ -101,12 +101,12 @@ def purchase_order_xml(data, decoded):
         return None
 
 
-def purchase_order_list_xml(data, decoded):
+def purchase_order_list_xml(data, decoded, element_name):
     try:
-        xml_data = '<CanteenPurchaseOrderList>\n'
+        xml_data = f'<{element_name}>\n'
         for row in data:
             xml_data += (
-                f'  <CanteenPurchaseOrderList '
+                f'<{element_name}>'
                 f'UID="{row["UID"]}" '
                 f'CanteenPurchaseOrderID="{row["CanteenPurchaseOrderID"]}" '
                 f'ReferenceTransID="{row["ReferenceTransID"]}" '
@@ -162,19 +162,19 @@ def purchase_order_list_xml(data, decoded):
                 f'ADDDT4="{dt.now()}" '
                 f'ADDDT5="{dt.now()}" />\n'
             )
-        xml_data += '</CanteenPurchaseOrderList>'
+        xml_data += f'</{element_name}>'
         return xml_data
     except Exception as e:
         print("Error in purchase_order_list_xml: " + str(e))
         return None
 
 
-def purchase_order_charges_xml(data, decoded):
+def purchase_order_charges_xml(data, decoded, element_name):
     try:
-        xml_data = '<CanteenPurchaseOrderCharges>\n'
+        xml_data = f'<{element_name}>\n'
         for row in data:
             xml_data += (
-                f'  <CanteenPurchaseOrderCharges '
+                f'<{element_name}>'
                 f'UID="{row["UID"]}" '
                 f'CanteenPurchaseOrderID="{row["CanteenPurchaseOrderID"]}" '
                 f'ChargesMID="{row["ChargesMID"]}" '
@@ -194,19 +194,19 @@ def purchase_order_charges_xml(data, decoded):
                 f'UpdatedBy="{decoded["user_id"]}" '
                 f'UpdatedDate="{dt.now()}" />\n'
             )
-        xml_data += '</CanteenPurchaseOrderCharges>'
+        xml_data += f'</{element_name}>'
         return xml_data
     except Exception as e:
         print("Error in purchase_order_charges_xml: " + str(e))
         return None
 
 
-def purchase_order_terms_xml(data, decoded):
+def purchase_order_terms_xml(data, decoded, element_name):
     try:
-        xml_data = '<CanteenPurchaseOrderTerms>\n'
+        xml_data = f'<{element_name}>\n'
         for row in data:
             xml_data += (
-                f'  <CanteenPurchaseOrderTerms '
+                f'<{element_name}>'
                 f'UID="{row["UID"]}" '
                 f'PurchaseOrderID="{row["PurchaseOrderID"]}" '
                 f'TermsID="{row["TermsID"]}" '
@@ -219,7 +219,7 @@ def purchase_order_terms_xml(data, decoded):
                 f'UpdatedBy="{decoded["user_id"]}" '
                 f'UpdatedDate="{dt.now()}" />\n'
             )
-        xml_data += '</CanteenPurchaseOrderTerms>'
+        xml_data += f'</{element_name}>'
         return xml_data
     except Exception as e:
         print("Error in purchase_order_terms_xml: " + str(e))

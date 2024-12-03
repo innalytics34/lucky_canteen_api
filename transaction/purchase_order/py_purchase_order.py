@@ -5,37 +5,44 @@ from datetime import datetime as dt
 from login.py_dropdown import Year
 
 def po_insert_update(request, decoded):
-    print(request, '0101')
     UID = request.get("UID")
+
     CanteenPurchaseOrderXML = purchase_order_xml(request['purchase_order'], decoded)
-    print(CanteenPurchaseOrderXML, '000')
 
     (CanteenPurchaseOrderListInsertXML, CanteenPurchaseOrderListUpdateXML, CanteenPurchaseOrderChargesInsertXML,
      CanteenPurchaseOrderChargesUpdateXML, CanteenPurchaseOrderTermsInsertXML, CanteenPurchaseOrderTermsUpdateXML)= \
         (find_new_record(request['po_list'], request['po_charges'], request['po_items']))
 
-    i_CanteenPurchaseOrderListXML = purchase_order_list_xml(CanteenPurchaseOrderListInsertXML, decoded)
+    element_lst = 'CanteenPurchaseOrderList'
+    i_CanteenPurchaseOrderListXML = purchase_order_list_xml(CanteenPurchaseOrderListInsertXML, decoded, element_lst)
 
-    u_CanteenPurchaseOrderListXML = purchase_order_list_xml(CanteenPurchaseOrderListUpdateXML, decoded)
+    element_lsts = 'CanteenPurchaseOrderLists'
+    u_CanteenPurchaseOrderListXML = purchase_order_list_xml(CanteenPurchaseOrderListUpdateXML, decoded, element_lsts)
 
-    i_CanteenPurchaseOrderChargesXML = purchase_order_charges_xml(CanteenPurchaseOrderChargesInsertXML, decoded)
+    element_chg = 'CanteenPurchaseOrderCharges'
+    i_CanteenPurchaseOrderChargesXML = purchase_order_charges_xml(CanteenPurchaseOrderChargesInsertXML, decoded,
+                                                                  element_chg)
 
-    u_CanteenPurchaseOrderChargesXML = purchase_order_charges_xml(CanteenPurchaseOrderChargesUpdateXML, decoded)
+    element_chgs = 'CanteenPurchaseOrderChargess'
+    u_CanteenPurchaseOrderChargesXML = purchase_order_charges_xml(CanteenPurchaseOrderChargesUpdateXML, decoded,
+                                                                  element_chgs)
+    element_trm = 'CanteenPurchaseOrderTerms'
+    i_CanteenPurchaseOrderItermsXML = purchase_order_terms_xml(CanteenPurchaseOrderTermsInsertXML, decoded, element_trm)
 
-    i_CanteenPurchaseOrderItermsXML = purchase_order_terms_xml(CanteenPurchaseOrderTermsInsertXML, decoded)
-
-    u_CanteenPurchaseOrderItermsXML = purchase_order_terms_xml(CanteenPurchaseOrderTermsUpdateXML, decoded)
+    element_trms = 'CanteenPurchaseOrderTermss'
+    u_CanteenPurchaseOrderItermsXML = purchase_order_terms_xml(CanteenPurchaseOrderTermsUpdateXML, decoded,
+                                                               element_trms)
 
     if UID not in ['', 0, '0']:
-        values = (CanteenPurchaseOrderXML, i_CanteenPurchaseOrderListXML, i_CanteenPurchaseOrderChargesXML,
-                  i_CanteenPurchaseOrderItermsXML, 80200, 100000, Year()[0]["Yr"], dt.now())
-        py_connection.call_prop("{call Canteen.bis_CanteenPurchaseOrder_Insert"
-                                "(?,?,?,?,?,?,?,?)}", values)
-    else:
         values = (CanteenPurchaseOrderXML, i_CanteenPurchaseOrderListXML, u_CanteenPurchaseOrderListXML,
                   i_CanteenPurchaseOrderChargesXML, u_CanteenPurchaseOrderChargesXML, i_CanteenPurchaseOrderItermsXML,
                   u_CanteenPurchaseOrderItermsXML, UID)
         py_connection.call_prop("{call Canteen.bis_CanteenPurchaseOrder_Update"
+                                "(?,?,?,?,?,?,?,?)}", values)
+    else:
+        values = (CanteenPurchaseOrderXML, i_CanteenPurchaseOrderListXML, i_CanteenPurchaseOrderChargesXML,
+                  i_CanteenPurchaseOrderItermsXML, 80200, 100000, Year()[0]["Yr"], dt.now())
+        py_connection.call_prop("{call Canteen.bis_CanteenPurchaseOrder_Insert"
                                 "(?,?,?,?,?,?,?,?)}", values)
 
     return {"message": "Purchase Order Inserted Successfully", "rval": 1}
