@@ -8,30 +8,38 @@ def po_insert_update(request, decoded):
     UID = request.get("UID")
 
     CanteenPurchaseOrderXML = purchase_order_xml(request['purchase_order'], decoded)
-
+    print(CanteenPurchaseOrderXML, '000')
     (CanteenPurchaseOrderListInsertXML, CanteenPurchaseOrderListUpdateXML, CanteenPurchaseOrderChargesInsertXML,
      CanteenPurchaseOrderChargesUpdateXML, CanteenPurchaseOrderTermsInsertXML, CanteenPurchaseOrderTermsUpdateXML)= \
         (find_new_record(request['po_list'], request['po_charges'], request['po_items']))
 
     element_lst = 'CanteenPurchaseOrderList'
     i_CanteenPurchaseOrderListXML = purchase_order_list_xml(CanteenPurchaseOrderListInsertXML, decoded, element_lst)
+    print(i_CanteenPurchaseOrderListXML, '111')
 
     element_lsts = 'CanteenPurchaseOrderLists'
     u_CanteenPurchaseOrderListXML = purchase_order_list_xml(CanteenPurchaseOrderListUpdateXML, decoded, element_lsts)
+    print(u_CanteenPurchaseOrderListXML, '222')
 
     element_chg = 'CanteenPurchaseOrderCharges'
     i_CanteenPurchaseOrderChargesXML = purchase_order_charges_xml(CanteenPurchaseOrderChargesInsertXML, decoded,
                                                                   element_chg)
+    print(i_CanteenPurchaseOrderChargesXML, '333')
 
     element_chgs = 'CanteenPurchaseOrderChargess'
     u_CanteenPurchaseOrderChargesXML = purchase_order_charges_xml(CanteenPurchaseOrderChargesUpdateXML, decoded,
                                                                   element_chgs)
+    print(u_CanteenPurchaseOrderChargesXML, '444')
+
     element_trm = 'CanteenPurchaseOrderTerms'
     i_CanteenPurchaseOrderItermsXML = purchase_order_terms_xml(CanteenPurchaseOrderTermsInsertXML, decoded, element_trm)
+
+    print(i_CanteenPurchaseOrderItermsXML, '555')
 
     element_trms = 'CanteenPurchaseOrderTermss'
     u_CanteenPurchaseOrderItermsXML = purchase_order_terms_xml(CanteenPurchaseOrderTermsUpdateXML, decoded,
                                                                element_trms)
+    print(u_CanteenPurchaseOrderItermsXML, '666')
 
     if UID not in ['', 0, '0']:
         values = (CanteenPurchaseOrderXML, i_CanteenPurchaseOrderListXML, u_CanteenPurchaseOrderListXML,

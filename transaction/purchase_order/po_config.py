@@ -3,12 +3,11 @@ from login.py_dropdown import Year
 
 
 def purchase_order_xml(data, decoded):
-    print(data, '0202')
     try:
-        xml_data = '<CanteenPurchaseOrder>\n'
+        xml_data = '<CanteenPurchaseOrder>'
         for row in data:
             xml_data += (
-                f'  <CanteenPurchaseOrder '
+                f'<CanteenPurchaseOrder '
                 f'UID="{row["UID"]}" '
                 f'LogonUser="{decoded["user_id"]}" '
                 f'BranchID="{decoded["branch_id"]}" '
@@ -91,7 +90,7 @@ def purchase_order_xml(data, decoded):
                 f'TDSAmount="{row["TDSAmount"]}" '
                 f'POTypeID="{row["POTypeID"]}" '
                 f'POType="{row["POType"]}" '
-                f'file_path="{row["file_path"]}" />\n'
+                f'file_path="{row["file_path"]}" />'
             )
         xml_data += '</CanteenPurchaseOrder>'
         return xml_data
@@ -103,10 +102,10 @@ def purchase_order_xml(data, decoded):
 
 def purchase_order_list_xml(data, decoded, element_name):
     try:
-        xml_data = f'<{element_name}>\n'
+        xml_data = f'<{element_name}>'
         for row in data:
             xml_data += (
-                f'<{element_name}>'
+                f'<{element_name} '
                 f'UID="{row["UID"]}" '
                 f'CanteenPurchaseOrderID="{row["CanteenPurchaseOrderID"]}" '
                 f'ReferenceTransID="{row["ReferenceTransID"]}" '
@@ -160,7 +159,7 @@ def purchase_order_list_xml(data, decoded, element_name):
                 f'ADDDT2="{dt.now()}" '
                 f'ADDDT3="{dt.now()}" '
                 f'ADDDT4="{dt.now()}" '
-                f'ADDDT5="{dt.now()}" />\n'
+                f'ADDDT5="{dt.now()}" />'
             )
         xml_data += f'</{element_name}>'
         return xml_data
@@ -171,10 +170,10 @@ def purchase_order_list_xml(data, decoded, element_name):
 
 def purchase_order_charges_xml(data, decoded, element_name):
     try:
-        xml_data = f'<{element_name}>\n'
+        xml_data = f'<{element_name}>'
         for row in data:
             xml_data += (
-                f'<{element_name}>'
+                f'<{element_name} '
                 f'UID="{row["UID"]}" '
                 f'CanteenPurchaseOrderID="{row["CanteenPurchaseOrderID"]}" '
                 f'ChargesMID="{row["ChargesMID"]}" '
@@ -192,7 +191,7 @@ def purchase_order_charges_xml(data, decoded, element_name):
                 f'CreatedBy="{decoded["user_id"]}" '
                 f'CreatedDate="{dt.now()}" '
                 f'UpdatedBy="{decoded["user_id"]}" '
-                f'UpdatedDate="{dt.now()}" />\n'
+                f'UpdatedDate="{dt.now()}" />'
             )
         xml_data += f'</{element_name}>'
         return xml_data
@@ -203,10 +202,10 @@ def purchase_order_charges_xml(data, decoded, element_name):
 
 def purchase_order_terms_xml(data, decoded, element_name):
     try:
-        xml_data = f'<{element_name}>\n'
+        xml_data = f'<{element_name}>'
         for row in data:
             xml_data += (
-                f'<{element_name}>'
+                f'<{element_name} '
                 f'UID="{row["UID"]}" '
                 f'PurchaseOrderID="{row["PurchaseOrderID"]}" '
                 f'TermsID="{row["TermsID"]}" '
@@ -217,7 +216,7 @@ def purchase_order_terms_xml(data, decoded, element_name):
                 f'CreatedBy="{decoded["user_id"]}" '
                 f'CreatedDate="{dt.now()}" '
                 f'UpdatedBy="{decoded["user_id"]}" '
-                f'UpdatedDate="{dt.now()}" />\n'
+                f'UpdatedDate="{dt.now()}" />'
             )
         xml_data += f'</{element_name}>'
         return xml_data
