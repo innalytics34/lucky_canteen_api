@@ -124,5 +124,18 @@ filter_config = {
                 "source": "request"
             }
         ]
-    }
+    },
+    "MI_Location": {
+        "data_source": "bis_Lookup_Location",
+        "params": []
+    },
+    "MI_ItemLookUp": {
+        "data_source": "bis_Lookup_CanteenMaterialInward_Items",
+        "params": [
+            {
+                "label": "supplier_id",
+                "source": "request"
+            }
+        ]
+    },
 }

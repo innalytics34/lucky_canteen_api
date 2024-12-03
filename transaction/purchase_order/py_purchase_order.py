@@ -47,13 +47,15 @@ def po_insert_update(request, decoded):
                   u_CanteenPurchaseOrderItermsXML, UID)
         py_connection.call_prop("{call Canteen.bis_CanteenPurchaseOrder_Update"
                                 "(?,?,?,?,?,?,?,?)}", values)
+
+        return {"message": "Purchase Order Updated Successfully", "rval": 1}
     else:
         values = (CanteenPurchaseOrderXML, i_CanteenPurchaseOrderListXML, i_CanteenPurchaseOrderChargesXML,
                   i_CanteenPurchaseOrderItermsXML, 80200, 100000, Year()[0]["Yr"], dt.now())
         py_connection.call_prop("{call Canteen.bis_CanteenPurchaseOrder_Insert"
                                 "(?,?,?,?,?,?,?,?)}", values)
 
-    return {"message": "Purchase Order Inserted Successfully", "rval": 1}
+        return {"message": "Purchase Order Inserted Successfully", "rval": 1}
 
 
 def find_new_record(po_list, po_charges, po_terms):

@@ -15,6 +15,7 @@ from product import py_pmrm, py_pmim, py_product
 from sidebar import py_sidebar
 from transaction.purchase_order import py_purchase_order
 from uom import py_uom
+from transaction.material_inward import py_material_inward
 
 auth_scheme = py_jwt.JWTBearer()
 
@@ -207,6 +208,15 @@ async def po_insert_update(request: Request, decoded=Depends(auth_scheme)):
     try:
         request = await request.json()
         response = py_purchase_order.po_insert_update(request, decoded)
+        return response
+    except Exception as e:
+        print(str(e))
+
+@app.post("/canteen/mi_insert_update")
+async def mi_insert_update(request: Request, decoded=Depends(auth_scheme)):
+    try:
+        request = await request.json()
+        response = py_material_inward.mi_insert_update(request, decoded)
         return response
     except Exception as e:
         print(str(e))

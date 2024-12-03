@@ -238,4 +238,73 @@ fetch_config = {
             }
         ]
     },
+    "MI_SearchView": {
+        "data_source": "bis_Search_CanteenMaterialInward",
+        "params": [
+            {
+                "label": "branch_id",
+                "source": "decoded"
+            },
+            {
+                "label": "document_type_id",  # 80300
+                "source": "request"
+            },
+            {
+                "label": "year",
+                "source": "decoded"
+            }
+        ]
+    },
+    "MI_MaterialInward": {
+        "data_source": "bis_CanteenMaterialInward_SelectByField",
+        "params": [
+            {
+                "label": "field_name",  # UID
+                "source": "request"
+            },
+            {
+                "label": "value",
+                "source": "request"
+            }
+        ]
+    },
+    "MI_MaterialInwardList": {
+        "data_source": "bis_CanteenMaterialInwardList_SelectByField",
+        "params": [
+            {
+                "label": "field_name",  # CanteenMaterialInwardID
+                "source": "request"
+            },
+            {
+                "label": "value",
+                "source": "request"
+            }
+        ]
+    },
+    "MI_MaterialInwardCharges": {
+        "data_source": "bis_CanteenMaterialInwardCharges_SelectByField",
+        "params": [
+            {
+                "label": "field_name",  # CanteenMaterialInwardID
+                "source": "request"
+            },
+            {
+                "label": "value",
+                "source": "request"
+            }
+        ]
+    },
+    "MI_MaterialInwardTerms": {
+        "data_source": "bis_CanteenMaterialInwardTerms_SelectByField",
+        "params": [
+            {
+                "label": "field_name",  # CanteenMaterialInwardID
+                "source": "request"
+            },
+            {
+                "label": "value",
+                "source": "request"
+            }
+        ]
+    },
 }
