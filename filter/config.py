@@ -129,6 +129,19 @@ filter_config = {
         "data_source": "bis_Lookup_Location",
         "params": []
     },
+    "MI_Transport": {
+        "data_source": "Canteen.bis_Lookup_TransportName",
+        "params": [
+            {
+                "label": "id",
+                "source": "request"
+            },
+            {
+                "label": "branch_id",
+                "source": "decoded"
+            }
+        ]
+    },
     "MI_ItemLookUp": {
         "data_source": "bis_Lookup_CanteenMaterialInward_Items",
         "params": [
