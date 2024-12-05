@@ -27,7 +27,7 @@ def menu(request, decoded):
         return {"message": "Canteen Menu Updated Successfully", "rval": 1}
 
     else:
-        values = (CanteenMenuXML, i_CanteenMenuXMLListInsertXML, 80200, decoded['branch_id'], Year()[0]["Yr"], dt.now())
+        values = (CanteenMenuXML, i_CanteenMenuXMLListInsertXML, 80400, decoded['branch_id'], Year()[0]["Yr"], dt.now())
         py_connection.call_prop("{call Canteen.bis_CanteenMenu_Insert"
                                 "(?,?,?,?,?,?)}", values)
         return {"message": "Canteen Menu Inserted Successfully", "rval": 1}

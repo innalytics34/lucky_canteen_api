@@ -307,4 +307,47 @@ fetch_config = {
             }
         ]
     },
+    "M_Search View": {
+        "data_source": "bis_Search_CanteenMenu",
+        "params": [
+            {
+                "label": "year",
+                "source": "decoded"
+            },
+            {
+                "label": "document_type_id",  # 80400
+                "source": "request"
+            },
+            {
+                "label": "branch_id",
+                "source": "decoded"
+            }
+        ]
+    },
+    "M_Menu": {
+        "data_source": "bis_CanteenMenu_SelectByField",
+        "params": [
+            {
+                "label": "field_name",  # UID
+                "source": "request"
+            },
+            {
+                "label": "value",
+                "source": "request"
+            }
+        ]
+    },
+    "M_MenuList": {
+        "data_source": "bis_CanteenMenuList_SelectByField",
+        "params": [
+            {
+                "label": "field_name",  # CanteenMenuID
+                "source": "request"
+            },
+            {
+                "label": "value",
+                "source": "request"
+            }
+        ]
+    }
 }
