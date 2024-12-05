@@ -151,4 +151,9 @@ filter_config = {
             }
         ]
     },
+    "M_LookupItem": {
+        "data_source": "bis_Lookup_ItemsForCanteenMenu",
+        "params": []
+    },
+
 }

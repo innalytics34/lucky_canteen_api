@@ -16,6 +16,7 @@ from sidebar import py_sidebar
 from transaction.purchase_order import py_purchase_order
 from uom import py_uom
 from transaction.material_inward import py_material_inward
+from transaction.menu import py_menu
 
 auth_scheme = py_jwt.JWTBearer()
 
@@ -221,6 +222,14 @@ async def mi_insert_update(request: Request, decoded=Depends(auth_scheme)):
     except Exception as e:
         print(str(e))
 
+@app.post("/canteen/m_insert_update")
+async def m_insert_update(request: Request, decoded=Depends(auth_scheme)):
+    try:
+        request = await request.json()
+        response = py_menu.menu(request, decoded)
+        return response
+    except Exception as e:
+        print(str(e))
 
 if __name__ =="__main__":
     run(app, host='0.0.0.0', port=8065)
