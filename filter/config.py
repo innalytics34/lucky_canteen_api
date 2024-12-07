@@ -130,7 +130,7 @@ filter_config = {
         "params": []
     },
     "MI_Transport": {
-        "data_source": "Canteen.bis_Lookup_TransportName",
+        "data_source": "bis_Lookup_TransportName",
         "params": [
             {
                 "label": "id",
@@ -200,7 +200,7 @@ filter_config = {
         ]
     },
     "MaI_ItemLookUp": {
-        "data_source": "Canteen.bis_lookup_ItemsForMaterialIssue",
+        "data_source": "bis_lookup_ItemsForMaterialIssue",
         "params": [
             {
                 "label": "ReferenceNo",
