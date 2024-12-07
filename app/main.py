@@ -17,6 +17,7 @@ from uom import py_uom
 from transaction.material_inward import py_material_inward
 from transaction.menu import py_menu
 from transaction.material_request import py_material_request
+from transaction.material_issue import py_material_issue
 
 auth_scheme = py_jwt.JWTBearer()
 
@@ -236,6 +237,15 @@ async def mr_insert_update(request: Request, decoded=Depends(auth_scheme)):
     try:
         request = await request.json()
         response = py_material_request.mr_insert_update(request, decoded)
+        return response
+    except Exception as e:
+        print(str(e))
+
+@app.post("/canteen/mai_insert_update")
+async def mai_insert_update(request: Request, decoded=Depends(auth_scheme)):
+    try:
+        request = await request.json()
+        response = py_material_issue.mai_insert_update(request, decoded)
         return response
     except Exception as e:
         print(str(e))

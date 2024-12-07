@@ -9,34 +9,33 @@ def mai_insert_update(request, decoded):  # 80500
     CanteenMaterialIssueXML = material_issue_xml(request['material_issue'], decoded)
     print(CanteenMaterialIssueXML, '000')
 
-    CanteenMaterialIssueListInsertXML, CanteenMaterialIssueListUpdateXML = find_new_record(request['mr_list'])
+    CanteenMaterialIssueListInsertXML, CanteenMaterialIssueListUpdateXML = find_new_record(request['mai_list'])
 
-    element_lst = 'MaterialIssueList'
-    i_CanteenMaterialRequestListXML = material_issue_xml(CanteenMaterialRequestListInsertXML, decoded, element_lst)
-    print(i_CanteenMaterialRequestListXML, '111')
+    element_lst = 'CanteenMaterialIssueList'
+    i_CanteenMaterialIssueListXML = material_issue_list_xml(CanteenMaterialIssueListInsertXML, decoded, element_lst)
+    print(i_CanteenMaterialIssueListXML, '111')
 
-    element_lsts = 'MaterialIssueLists'
-    u_CanteenMaterialRequestListXML = material_issue_list_xml(CanteenMaterialRequestListUpdateXML, decoded, element_lsts)
-    print(u_CanteenMaterialRequestListXML, '222')
+    element_lsts = 'CanteenMaterialIssueLists'
+    u_CanteenMaterialIssueListXML = material_issue_list_xml(CanteenMaterialIssueListUpdateXML, decoded, element_lsts)
+    print(u_CanteenMaterialIssueListXML, '222')
 
     if UID not in ['', 0, '0']:
-        values = (CanteenMaterialRequestXML, i_CanteenMaterialRequestListXML, u_CanteenMaterialRequestListXML,
-                  i_CanteenMaterialRequestDetailsXML, u_CanteenMaterialRequestDetailsXML, UID)
-        py_connection.call_prop("{call Canteen.bis_CanteenMaterialRequest_Update"
-                                "(?,?,?,?,?,?)}", values)
-        return {"message": "Material Request Updated Successfully", "rval": 1}
+        values = (CanteenMaterialIssueXML, i_CanteenMaterialIssueListXML, u_CanteenMaterialIssueListXML, UID)
+        py_connection.call_prop("{call Canteen.[bis_MaterialIssue_Update]"
+                                "(?,?,?,?)}", values)
+        return {"message": "Material Issue Updated Successfully", "rval": 1}
     else:
-        values = (CanteenMaterialRequestXML, i_CanteenMaterialRequestListXML, i_CanteenMaterialRequestDetailsXML,
-                  80500, 100000, Year()[0]["Yr"], dt.now())
+        values = (CanteenMaterialIssueXML, i_CanteenMaterialIssueListXML,
+                  80600, decoded['branch_id'], Year()[0]["Yr"], dt.now())
         print(values, '00992')
-        py_connection.call_prop("{call Canteen.bis_CanteenMaterialRequest_Insert"
-                                "(?,?,?,?,?,?,?)}", values)
-        return {"message": "Material Request Inserted Successfully", "rval": 1}
+        py_connection.call_prop("{call Canteen.bis_CanteenMaterialIssue_Insert"
+                                "(?,?,?,?,?,?)}", values)
+        return {"message": "Material Issue Inserted Successfully", "rval": 1}
 
 
-def find_new_record(mr_list):
-    MaterialRequestListInsert = [entry for entry in mr_list if entry["UID"] == 0]
-    MaterialRequestListUpdate = [entry for entry in mr_list if entry["UID"] != 0]
+def find_new_record(mai_list):
+    MaterialIssueListInsert = [entry for entry in mai_list if entry["UID"] == 0]
+    MaterialIssueListUpdate = [entry for entry in mai_list if entry["UID"] != 0]
 
-    return (MaterialRequestListInsert if len(MaterialRequestListInsert) else '',
-            MaterialRequestListUpdate)
+    return (MaterialIssueListInsert if len(MaterialIssueListInsert) else '',
+            MaterialIssueListUpdate)

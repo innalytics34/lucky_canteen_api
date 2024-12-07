@@ -51,7 +51,7 @@ def mi_insert_update(request, decoded):
         return {"message": "Material Inward Updated Successfully", "rval": 1}
     else:
         values = (CanteenMaterialInwardXML, i_CanteenMaterialInwardListXML, i_CanteenMaterialInwardChargesXML,
-                  i_CanteenMaterialInwardtermsXML, 80300, 100000, Year()[0]["Yr"], dt.now())
+                  i_CanteenMaterialInwardtermsXML, 80300, decoded['branch_id'], Year()[0]["Yr"], dt.now())
         print(values, '00992')
         py_connection.call_prop("{call Canteen.bis_CanteenMaterialInward_Insert"
                                 "(?,?,?,?,?,?,?,?)}", values)
