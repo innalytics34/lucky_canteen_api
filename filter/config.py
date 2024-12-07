@@ -8,7 +8,7 @@ filter_config = {
             },
             {
                 "label": "branch_id",
-                "source": "request"
+                "source": "decoded"
             },
             {
                 "label": "master_type_id",
