@@ -155,5 +155,39 @@ filter_config = {
         "data_source": "bis_Lookup_ItemsForCanteenMenu",
         "params": []
     },
-
+    "MR_Reference No": {
+        "data_source": "bis_lookup_ItemsForCanteenMaterialRequest",
+        "params": [
+            {
+                "label": "id",
+                "source": "request"
+            }
+        ]
+    },
+    "MR_ItemLookup": {
+        "data_source": "bis_lookup_ItemsForMenuList",
+        "params": [
+            {
+                "label": "uid",
+                "source": "request"
+            }
+        ]
+    },
+    "MR_TypeItemWise": {
+        "data_source": "bis_lookup_ItemsForMenuList_RawMaterial",
+        "params": [
+            {
+                "label": "uid",
+                "source": "request"
+            },
+            {
+                "label": "item_id",
+                "source": "request"
+            },
+        ]
+    },
+    "MRTypeDirect": {
+        "data_source": "bis_lookup_ItemsForMenuList_RawMaterial_Direct",
+        "params": []
+    }
 }

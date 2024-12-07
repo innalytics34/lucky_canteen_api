@@ -1,4 +1,49 @@
 fetch_config = {
+    "ReviewPendingAdmin": {
+        "data_source": "bis_LookUp_Select_ReviewDocuments_Admin",
+        "params": [
+            {
+                "label": "branch_id",
+                "source": "decoded"
+            }
+        ]
+
+    },
+    "ReviewPendingEmployee": {
+        "data_source": "bis_LookUp_Select_ReviewDocuments",
+        "params": [
+            {
+                "label": "user_id",
+                "source": "decoded"
+            },
+            {
+                "label": "branch_id",
+                "source": "decoded"
+            }
+        ]
+    },
+    "ApprovePendingAdmin": {
+        "data_source": "bis_LookUp_Select_ApprovePendingDocuments_Admin",
+        "params": [
+            {
+                "label": "branch_id",
+                "source": "decoded"
+            }
+        ]
+    },
+    "ApprovePendingEmployee": {
+        "data_source": "bis_LookUp_Select_ApprovePendingDocuments",
+        "params": [
+            {
+                "label": "user_id",
+                "source": "decoded"
+            },
+            {
+                "label": "branch_id",
+                "source": "decoded"
+            }
+        ]
+    },
     "accountM": {
         "data_source": "Bis_AccountM_SelectByField",
         "params": [
@@ -349,5 +394,62 @@ fetch_config = {
                 "source": "request"
             }
         ]
-    }
+    },
+    "MR_SearchView": {
+        "data_source": "bis_Search_CanteenMaterialRequest",
+        "params": [
+            {
+                "label": "year",
+                "source": "decoded"
+            },
+            {
+                "label": "branch_id",
+                "source": "decoded"
+            },
+            {
+                "label": "document_type_id",  # 80500
+                "source": "request"
+            }
+
+        ]
+    },
+    "MR_MaterialRequest": {
+        "data_source": "bis_CanteenMaterialRequest_SelectByField",
+        "params": [
+            {
+                "label": "field_name",  # UID
+                "source": "request"
+            },
+            {
+                "label": "value",
+                "source": "request"
+            }
+        ]
+    },
+    "MR_MaterialRequestList": {
+        "data_source": "bis_CanteenMaterialRequestList_SelectByField",
+        "params": [
+            {
+                "label": "field_name",  # CanteenMaterialRequestID
+                "source": "request"
+            },
+            {
+                "label": "value",
+                "source": "request"
+            }
+        ]
+    },
+    "MR_MaterialRequestDetails": {
+        "data_source": "bis_CanteenMaterialRequestDetails_SelectByField",
+        "params": [
+            {
+                "label": "field_name",  # CanteenMaterialRequestID
+                "source": "request"
+            },
+            {
+                "label": "value",
+                "source": "request"
+            }
+        ]
+    },
 }
