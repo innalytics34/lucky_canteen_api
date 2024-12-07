@@ -1,7 +1,6 @@
 from starlette.middleware.cors import CORSMiddleware
 from uvicorn import run
 from fastapi import FastAPI, Request, Depends, HTTPException
-
 from accountM import py_accountM
 from auth import py_jwt
 from delete import py_delete
@@ -17,6 +16,7 @@ from transaction.purchase_order import py_purchase_order
 from uom import py_uom
 from transaction.material_inward import py_material_inward
 from transaction.menu import py_menu
+from transaction.material_request import py_material_request
 
 auth_scheme = py_jwt.JWTBearer()
 
@@ -227,6 +227,15 @@ async def m_insert_update(request: Request, decoded=Depends(auth_scheme)):
     try:
         request = await request.json()
         response = py_menu.menu(request, decoded)
+        return response
+    except Exception as e:
+        print(str(e))
+
+@app.post("/canteen/mr_insert_update")
+async def mr_insert_update(request: Request, decoded=Depends(auth_scheme)):
+    try:
+        request = await request.json()
+        response = py_material_request.mr_insert_update(request, decoded)
         return response
     except Exception as e:
         print(str(e))

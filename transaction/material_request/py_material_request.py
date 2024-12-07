@@ -4,14 +4,14 @@ from transaction.material_request.mr_config import (material_request_xml, materi
 from datetime import datetime as dt
 from login.py_dropdown import Year
 
-def mr_insert_update(request, decoded):
+def mr_insert_update(request, decoded):  # 80500
     UID = request.get("UID")
 
     CanteenMaterialRequestXML = material_request_xml(request['material_request'], decoded)
     print(CanteenMaterialRequestXML, '000')
 
     (CanteenMaterialRequestListInsertXML, CanteenMaterialRequestListUpdateXML, CanteenMaterialRequestDetailsInsertXML,
-     CanteenMaterialRequestDetailsUpdateXML) = find_new_record(request['mr_list'], request['mr_charges'])
+     CanteenMaterialRequestDetailsUpdateXML) = find_new_record(request['mr_list'], request['mr_details'])
 
     element_lst = 'CanteenMaterialRequestList'
     i_CanteenMaterialRequestListXML = material_request_list_xml(CanteenMaterialRequestListInsertXML, decoded, element_lst)

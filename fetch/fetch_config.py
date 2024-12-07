@@ -452,4 +452,47 @@ fetch_config = {
             }
         ]
     },
+    "MaI_SearchView": {
+        "data_source": "Canteen.bis_Search_CanteenMaterialIssue",
+        "params": [
+            {
+                "label": "year",
+                "source": "decoded"
+            },
+            {
+                "label": "branch_id",
+                "source": "decoded"
+            },
+            {
+                "label": "document_type_id",  # 80600
+                "source": "request"
+            }
+        ]
+    },
+    "MaI_MaterialIssue": {
+        "data_source": "dbo.bis_MaterialIssue_SelectByField",
+        "params": [
+            {
+                "label": "field_name",  # UID
+                "source": "request"
+            },
+            {
+                "label": "value",
+                "source": "request"
+            }
+        ]
+    },
+    "MaI_MaterialIssueList": {
+        "data_source": "dbo.bis_MaterialIssueList_SelectByField",
+        "params": [
+            {
+                "label": "field_name",  # MaterialIssueID
+                "source": "request"
+            },
+            {
+                "label": "value",
+                "source": "request"
+            }
+        ]
+    }
 }

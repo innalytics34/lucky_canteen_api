@@ -4,6 +4,7 @@ from login.py_dropdown import Year
 
 def material_request_xml(data, decoded):
     try:
+        print(decoded, 'q-q0q')
         xml_data = '<CanteenMaterialRequest>'
         for row in data:
             xml_data += (
@@ -100,7 +101,7 @@ def material_request_list_xml(data, decoded, element_name):
                 f'ADDT3="{row["ADDT3"]}" '
                 f'ADDT4="{row["ADDT4"]}" '
                 f'ADDT5="{row["ADDT5"]}" '
-                f'ADDDT1="{row["ADDDT1"]}" '
+                f'ADDDT1="{row["ADDDT1"]}" '  # datetime
                 f'ADDDT2="{row["ADDDT2"]}" '
                 f'ADDDT3="{row["ADDDT3"]}" '
                 f'ADDDT4="{row["ADDDT4"]}" '
@@ -109,36 +110,60 @@ def material_request_list_xml(data, decoded, element_name):
         xml_data += f'</{element_name}>'
         return xml_data
     except Exception as e:
-        print("Error in material_inward_list_xml: " + str(e))
+        print("Error in material_request_list_xml: " + str(e))
         return None
 
 
-def material_inward_charges_xml(data, decoded, element_name):
+def material_request_details_xml(data, decoded, element_name):
     try:
         xml_data = f'<{element_name}>'
         for row in data:
             xml_data += (
                 f'<{element_name} '
                 f'UID="{row["UID"]}" '
-                f'CanteenMaterialInward_UID="{row["CanteenMaterialInward_UID"]}" '
-                f'ChargesM_UID="{row["ChargesM_UID"]}" '
-                f'ChargesPer="{row["ChargesPer"]}" '
-                f'ChargesAmount="{row["ChargesAmount"]}" '
-                f'CGSTPer="{row["CGSTPer"]}" '
-                f'CGSTAmount="{row["CGSTAmount"]}" '
-                f'SGSTPer="{row["SGSTPer"]}" '
-                f'SGSTAmount="{row["SGSTAmount"]}" '
-                f'IGSTPer="{row["IGSTPer"]}" '
-                f'IGSTAmount="{row["IGSTAmount"]}" '
-                f'TotalAmount="{row["TotalAmount"]}" '
+                f'CanteenMaterialRequestID="{row["CanteenMaterialRequestID"]}" '
+                f'ItemID="{row["ItemID"]}" '
+                f'ItemDescription="{row["ItemDescription"]}" '
+                f'RawMaterialID="{row["RawMaterialID"]}" '
+                f'RawMaterialDescription="{row["RawMaterialDescription"]}" '
+                f'ItemTypeID="{row["ItemTypeID"]}" '
+                f'ItemType="{row["ItemType"]}" '
+                f'UOMID="{row["UOMID"]}" '
+                f'UOMDescription="{row["UOMDescription"]}" '
+                f'Qty="{row["Qty"]}" '
+                f'BaseUOMID="{row["BaseUOMID"]}" '
+                f'BaseUOM="{row["BaseUOM"]}" '
+                f'BaseUOMQty="{row["BaseUOMQty"]}" '
+                f'TotalQty="{row["TotalQty"]}" '
+                f'RequestQty="{row["RequestQty"]}" '
                 f'Status="{row["Status"]}" '
                 f'CreatedBy="{decoded["user_id"]}" '
                 f'CreatedDate="{dt.now()}" '
                 f'UpdatedBy="{decoded["user_id"]}" '
-                f'UpdatedDate="{dt.now()}"  />'
+                f'UpdatedDate="{dt.now()}" '
+                f'ADDD1="{row["ADDD1"]}" '  # decimal
+                f'ADDD2="{row["ADDD2"]}" '
+                f'ADDD3="{row["ADDD3"]}" '
+                f'ADDD4="{row["ADDD4"]}" '
+                f'ADDD5="{row["ADDD5"]}" '
+                f'ADDI1="{row["ADDI1"]}" '  # int
+                f'ADDI2="{row["ADDI2"]}" '
+                f'ADDI3="{row["ADDI3"]}" '
+                f'ADDI4="{row["ADDI4"]}" '
+                f'ADDI5="{row["ADDI5"]}" '
+                f'ADDT1="{row["ADDT1"]}" '  # varchar
+                f'ADDT2="{row["ADDT2"]}" '
+                f'ADDT3="{row["ADDT3"]}" '
+                f'ADDT4="{row["ADDT4"]}" '
+                f'ADDT5="{row["ADDT5"]}" '
+                f'ADDDT1="{row["ADDDT1"]}" '  # datetime
+                f'ADDDT2="{row["ADDDT2"]}" '
+                f'ADDDT3="{row["ADDDT3"]}" '
+                f'ADDDT4="{row["ADDDT4"]}" '
+                f'ADDDT5="{row["ADDDT5"]}"  />'
             )
         xml_data += f'</{element_name}>'
         return xml_data
     except Exception as e:
-        print("Error in material_inward_charges_xml: " + str(e))
+        print("Error in material_request_details_xml: " + str(e))
         return None

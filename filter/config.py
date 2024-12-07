@@ -189,5 +189,27 @@ filter_config = {
     "MRTypeDirect": {
         "data_source": "bis_lookup_ItemsForMenuList_RawMaterial_Direct",
         "params": []
-    }
+    },
+    "MaI_ReferenceNo": {  # Material Issue
+        "data_source": "bis_lookup_ItemsForCanteenMaterialIssue",
+        "params": [
+            {
+                "label": "id",  # 1
+                "source": "request"
+            }
+        ]
+    },
+    "MaI_ItemLookUp": {
+        "data_source": "Canteen.bis_lookup_ItemsForMaterialIssue",
+        "params": [
+            {
+                "label": "ReferenceNo",
+                "source": "request"
+            },
+            {
+                "label": "location",
+                "source": "request"
+            }
+        ]
+    },
 }
