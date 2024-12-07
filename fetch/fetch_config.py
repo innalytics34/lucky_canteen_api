@@ -352,7 +352,7 @@ fetch_config = {
             }
         ]
     },
-    "M_Search View": {
+    "M_SearchView": {
         "data_source": "bis_Search_CanteenMenu",
         "params": [
             {
