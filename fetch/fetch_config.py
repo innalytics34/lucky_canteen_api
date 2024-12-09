@@ -1,12 +1,7 @@
 fetch_config = {
     "ReviewPendingAdmin": {
         "data_source": "bis_LookUp_Select_ReviewDocuments_Admin",
-        "params": [
-            {
-                "label": "branch_id",
-                "source": "decoded"
-            }
-        ]
+        "params": []
 
     },
     "ReviewPendingEmployee": {
@@ -453,7 +448,7 @@ fetch_config = {
         ]
     },
     "MaI_SearchView": {
-        "data_source": "Canteen.bis_Search_CanteenMaterialIssue",
+        "data_source": "bis_Search_CanteenMaterialIssue",
         "params": [
             {
                 "label": "year",
@@ -470,7 +465,7 @@ fetch_config = {
         ]
     },
     "MaI_MaterialIssue": {
-        "data_source": "dbo.bis_MaterialIssue_SelectByField",
+        "data_source": "bis_MaterialIssue_SelectByField",
         "params": [
             {
                 "label": "field_name",  # UID
@@ -483,7 +478,7 @@ fetch_config = {
         ]
     },
     "MaI_MaterialIssueList": {
-        "data_source": "dbo.bis_MaterialIssueList_SelectByField",
+        "data_source": "bis_MaterialIssueList_SelectByField",
         "params": [
             {
                 "label": "field_name",  # MaterialIssueID
@@ -494,5 +489,48 @@ fetch_config = {
                 "source": "request"
             }
         ]
-    }
+    },
+    "Mar_SearchView": {
+        "data_source": "bis_Search_CanteenMaterialReturn",
+        "params": [
+            {
+                "label": "year",
+                "source": "decoded"
+            },
+            {
+                "label": "branch_id",
+                "source": "decoded"
+            },
+            {
+                "label": "document_type_id",  # 80700
+                "source": "request"
+            }
+        ]
+    },
+    "Mar_MaterialReturn": {
+        "data_source": "bis_CanteenMaterialReturn_SelectByField",
+        "params": [
+            {
+                "label": "field_name",  # UID
+                "source": "request"
+            },
+            {
+                "label": "value",
+                "source": "request"
+            }
+        ]
+    },
+    "Mar_MaterialReturnList": {
+        "data_source": "bis_CanteenMaterialReturnList_SelectByField",
+        "params": [
+            {
+                "label": "field_name",  # CanteenMaterialReturnID
+                "source": "request"
+            },
+            {
+                "label": "value",
+                "source": "request"
+            }
+        ]
+    },
 }

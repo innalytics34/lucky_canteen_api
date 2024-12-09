@@ -212,4 +212,22 @@ filter_config = {
             }
         ]
     },
+    "Mar_ReferenceNo": {  # Material Return
+        "data_source": "bis_lookup_ItemsForCanteenMaterialReturn",
+        "params": [
+            {
+                "label": "id",
+                "source": "request"
+            }
+        ]
+    },
+    "Mar_ItemLookUp": {
+        "data_source": "bis_lookup_ItemsForMaterialReturn",
+        "params": [
+            {
+                "label": "uid",
+                "params": "request"
+            }
+        ]
+    }
 }
