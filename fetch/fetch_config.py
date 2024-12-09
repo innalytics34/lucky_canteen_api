@@ -10,31 +10,18 @@ fetch_config = {
             {
                 "label": "user_id",
                 "source": "decoded"
-            },
-            {
-                "label": "branch_id",
-                "source": "decoded"
             }
         ]
     },
     "ApprovePendingAdmin": {
         "data_source": "bis_LookUp_Select_ApprovePendingDocuments_Admin",
-        "params": [
-            {
-                "label": "branch_id",
-                "source": "decoded"
-            }
-        ]
+        "params": []
     },
     "ApprovePendingEmployee": {
         "data_source": "bis_LookUp_Select_ApprovePendingDocuments",
         "params": [
             {
                 "label": "user_id",
-                "source": "decoded"
-            },
-            {
-                "label": "branch_id",
                 "source": "decoded"
             }
         ]
