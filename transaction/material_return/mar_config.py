@@ -57,7 +57,7 @@ def material_return_xml(data, decoded):
 
     except Exception as e:
         print("Error in material_return_xml: " + str(e))
-        return None
+        return "Error in material_return_xml: " + str(e)
 
 
 def material_return_list_xml(data, decoded, element_name):
@@ -120,5 +120,5 @@ def material_return_list_xml(data, decoded, element_name):
         xml_data += f'</{element_name}>'
         return xml_data
     except Exception as e:
-        print("Error in material_issue_list_xml: " + str(e))
-        return None
+        print("Error in material_return_list_xml: " + str(e))
+        return "Error in material_return_list_xml: " + str(e)

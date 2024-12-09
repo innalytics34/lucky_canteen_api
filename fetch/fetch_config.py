@@ -256,7 +256,7 @@ fetch_config = {
         "data_source": "bis_CanteenPurchaseOrderTerms_SelectByField",
         "params": [
             {
-                "label": "field_name",  # CanteenPurchaseOrderID
+                "label": "field_name",  # PurchaseOrderID
                 "source": "request"
             },
             {
