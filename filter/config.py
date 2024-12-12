@@ -226,7 +226,20 @@ filter_config = {
         "params": [
             {
                 "label": "uid",
-                "params": "request"
+                "source": "request"
+            }
+        ]
+    },
+    "RMOS_ItemDes": {  # Raw Material Opening Stock
+        "data_source": "bis_Lookup_RawMaterialMaster",
+        "params": []
+    },
+    "RMOS_Uom": {
+        "data_source": "bis_Lookup_UOMDescription",
+        "params": [
+            {
+                "label": "BaseUom",
+                "source": "request"
             }
         ]
     }

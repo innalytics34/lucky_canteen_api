@@ -1,24 +1,28 @@
 from starlette.middleware.cors import CORSMiddleware
 from uvicorn import run
 from fastapi import FastAPI, Request, Depends, HTTPException
-from accountM import py_accountM
+
 from auth import py_jwt
 from delete import py_delete
 from fetch import py_fetch
 from filter import py_filter
-from generalMaster import py_generalMaster
-from hsn import py_hsn
 from login import py_login, py_dropdown
-import json
-from product import py_pmrm, py_pmim, py_product
 from sidebar import py_sidebar
-from transaction.purchase_order import py_purchase_order
+import json
+
+from generalMaster import py_generalMaster
+from product import py_pmrm, py_pmim, py_product
 from uom import py_uom
+from accountM import py_accountM
+from hsn import py_hsn
+
+from transaction.purchase_order import py_purchase_order
 from transaction.material_inward import py_material_inward
 from transaction.menu import py_menu
 from transaction.material_request import py_material_request
 from transaction.material_issue import py_material_issue
 from transaction.material_return import py_material_return
+from transaction.rm_opening_stock import raw_material_os
 
 auth_scheme = py_jwt.JWTBearer()
 
@@ -256,6 +260,15 @@ async def mar_insert_update(request: Request, decoded=Depends(auth_scheme)):
     try:
         request = await request.json()
         response = py_material_return.mar_insert_update(request, decoded)
+        return response
+    except Exception as e:
+        print(str(e))
+
+@app.post("/canteen/rmos_insert_update")
+async def rmos_insert_update(request: Request, decoded=Depends(auth_scheme)):
+    try:
+        request = await request.json()
+        response = raw_material_os.RawMaterialOpeningStock(request, decoded)
         return response
     except Exception as e:
         print(str(e))

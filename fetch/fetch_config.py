@@ -520,4 +520,26 @@ fetch_config = {
             }
         ]
     },
+    "RMOS_SearchView": {
+        "data_source": "bis_Search_RawMaterialOpeningStock",
+        "params": [
+            {
+                "label": "year",
+                "source": "decoded"
+            }
+        ]
+    },
+    "RMOS_rm": {
+        "data_source": "bis_RawMaterialOpeningStock_SelectByField",
+        "params": [
+            {
+                "label": "field_name",  # UID
+                "source": "request"
+            },
+            {
+                "label": "value",
+                "source": "request"
+            }
+        ]
+    }
 }
