@@ -452,7 +452,7 @@ fetch_config = {
         ]
     },
     "MaI_MaterialIssue": {
-        "data_source": "bis_MaterialIssue_SelectByField",
+        "data_source": "bis_canteenMaterialIssue_SelectByField",
         "params": [
             {
                 "label": "field_name",  # UID
@@ -465,10 +465,10 @@ fetch_config = {
         ]
     },
     "MaI_MaterialIssueList": {
-        "data_source": "bis_MaterialIssueList_SelectByField",
+        "data_source": "bis_canteenMaterialIssueList_SelectByField",
         "params": [
             {
-                "label": "field_name",  # MaterialIssueID
+                "label": "field_name",  # CanteenMaterialIssueID
                 "source": "request"
             },
             {
