@@ -155,7 +155,7 @@ filter_config = {
         "data_source": "bis_Lookup_ItemsForCanteenMenu",
         "params": []
     },
-    "MR_Reference No": {
+    "MR_ReferenceNo": {
         "data_source": "bis_lookup_ItemsForCanteenMaterialRequest",
         "params": [
             {
