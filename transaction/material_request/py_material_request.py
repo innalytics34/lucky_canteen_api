@@ -33,18 +33,55 @@ def mr_insert_update(request, decoded):  # 80500
 
 
     if UID not in ['', 0, '0']:
+        qry = """ 
+                DECLARE @return_value int, @successful bit
+                SET NOCOUNT ON; 
+
+                EXEC @return_value = [Canteen].[bis_CanteenMaterialRequest_Update]
+                @CanteenMaterialRequestInsert = ?, 
+                @CanteenMaterialRequestListInsert = ?,
+                @CanteenMaterialRequestListUpdate = ?, 
+                @CanteenMaterialRequestDetailsInsert = ?,
+                @CanteenMaterialRequestDetailsUpdate =?, 
+                @UID = ?,
+                @successful = @successful OUTPUT
+
+                SELECT @successful as N'@successful'
+                SELECT 'Return Value' = @return_value
+             """
+
         values = (CanteenMaterialRequestXML, i_CanteenMaterialRequestListXML, u_CanteenMaterialRequestListXML,
                   i_CanteenMaterialRequestDetailsXML, u_CanteenMaterialRequestDetailsXML, UID)
-        py_connection.call_prop("{call Canteen.bis_CanteenMaterialRequest_Update"
-                                "(?,?,?,?,?,?)}", values)
-        return {"message": "Material Request Updated Successfully", "rval": 1}
+        res = py_connection.call_prop_return_pk1(qry, values)
+        if res and len(res[0]) > 1 and len(res[0][0]) > 0 and res[0][0][0][0]:
+            return {"message": "Material Request Details Updated Successfully", "rval": 1}
+        else:
+            return {"message": "Material Request Updation Failed", "rval": 0}
     else:
+        qry = """ 
+                DECLARE @return_value int, @successful bit
+                SET NOCOUNT ON; 
+
+                EXEC @return_value = [Canteen].[bis_CanteenMaterialRequest_Insert]
+                @CanteenMaterialRequestInsert = ?, 
+                @CanteenMaterialRequestListInsert = ?, 
+                @CanteenMaterialRequestDetailsInsert = ?, 
+                @DocumetTypeId = ?, 
+                @Branch_ID = ?, 
+                @Year = ?, 
+                @DocumentDate = ?, @successful = @successful OUTPUT
+
+                SELECT @successful as N'@successful'
+                SELECT 'Return Value' = @return_value
+             """
         values = (CanteenMaterialRequestXML, i_CanteenMaterialRequestListXML, i_CanteenMaterialRequestDetailsXML,
                   80500, 100000, Year()[0]["Yr"], dt.now())
-        print(values, '00992')
-        py_connection.call_prop("{call Canteen.bis_CanteenMaterialRequest_Insert"
-                                "(?,?,?,?,?,?,?)}", values)
-        return {"message": "Material Request Inserted Successfully", "rval": 1}
+        res = py_connection.call_prop(qry, values)
+
+        if res and len(res[0]) > 1 and len(res[0][1]) > 0 and res[0][1][0][0]:
+            return {"message": "Material Request Details Inserted Successfully", "rval": 1}
+        else:
+            return {"message": "Material Request Insertion Failed", "rval": 0}
 
 
 def find_new_record(mr_list, mr_details):

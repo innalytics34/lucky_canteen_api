@@ -42,20 +42,58 @@ def po_insert_update(request, decoded):
     print(u_CanteenPurchaseOrderItermsXML, '666')
 
     if UID not in ['', 0, '0']:
+        qry = """ 
+                DECLARE @return_value int, @successful bit
+                SET NOCOUNT ON; 
+
+                EXEC @return_value = [Canteen].[bis_CanteenPurchaseOrder_Update]
+                @CanteenPurchaseOrderInsert = ?,
+                @CanteenPurchaseOrderListInsert = ?,
+                @CanteenPurchaseOrderListUpdate = ?, 
+                @CanteenPurchaseOrderChargesInsert = ?,
+                @CanteenPurchaseOrderChargesUpdate =?, 
+                @CanteenPurchaseOrderTermsInsert = ?,
+                @CanteenPurchaseOrderTermsUpdate = ?, 
+                @UID = ?,
+                @successful = @successful OUTPUT
+
+                SELECT @successful as N'@successful'
+                SELECT 'Return Value' = @return_value
+            """
+
         values = (CanteenPurchaseOrderXML, i_CanteenPurchaseOrderListXML, u_CanteenPurchaseOrderListXML,
                   i_CanteenPurchaseOrderChargesXML, u_CanteenPurchaseOrderChargesXML, i_CanteenPurchaseOrderItermsXML,
                   u_CanteenPurchaseOrderItermsXML, UID)
-        py_connection.call_prop("{call Canteen.bis_CanteenPurchaseOrder_Update"
-                                "(?,?,?,?,?,?,?,?)}", values)
-
-        return {"message": "Purchase Order Updated Successfully", "rval": 1}
+        res = py_connection.call_prop_return_pk1(qry, values)
+        if res and len(res[0]) > 1 and len(res[0][0]) > 0 and res[0][0][0][0]:
+            return {"message": "Purchase Order Details Updated Successfully", "rval": 1}
+        else:
+            return {"message": "Purchase Order Updation Failed", "rval": 0}
     else:
+        qry = """ 
+                DECLARE @return_value int, @successful bit
+                SET NOCOUNT ON; 
+
+                EXEC @return_value = [Canteen].[bis_CanteenPurchaseOrder_Insert]
+                @CanteenPurchaseOrderInsert = ?, 
+                @CanteenPurchaseOrderListInsert = ?, 
+                @CanteenPurchaseOrderChargesInsert = ?,
+                @CanteenPurchaseOrderTermsInsert = ?,
+                @DocumetTypeId = ?,
+                @Branch_ID = ?,
+                @Year = ?, 
+                @DocumentDate = ?, @successful = @successful OUTPUT
+
+                SELECT @successful as N'@successful'
+                SELECT 'Return Value' = @return_value
+             """
         values = (CanteenPurchaseOrderXML, i_CanteenPurchaseOrderListXML, i_CanteenPurchaseOrderChargesXML,
                   i_CanteenPurchaseOrderItermsXML, 80200, 100000, Year()[0]["Yr"], dt.now())
-        py_connection.call_prop("{call Canteen.bis_CanteenPurchaseOrder_Insert"
-                                "(?,?,?,?,?,?,?,?)}", values)
-
-        return {"message": "Purchase Order Inserted Successfully", "rval": 1}
+        res = py_connection.call_prop(qry, values)
+        if res and len(res[0]) > 1 and len(res[0][1]) > 0 and res[0][1][0][0]:
+            return {"message": "Purchase Order Details Inserted Successfully", "rval": 1}
+        else:
+            return {"message": "Purchase Order Insertion Failed", "rval": 0}
 
 
 def find_new_record(po_list, po_charges, po_terms):

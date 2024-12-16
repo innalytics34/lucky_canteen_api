@@ -21,17 +21,53 @@ def mar_insert_update(request, decoded):  # 80700
     print(u_CanteenMaterialReturnListXML, '222')
 
     if UID not in ['', 0, '0']:
-        values = (CanteenMaterialReturnXML, i_CanteenMaterialReturnListXML, u_CanteenMaterialReturnListXML, UID)
-        py_connection.call_prop("{call Canteen.bis_CanteenMaterialReturn_Update"
-                                "(?,?,?,?)}", values)
-        return {"message": "Material Issue Updated Successfully", "rval": 1}
+        qry = """ 
+                DECLARE @return_value int, @successful bit
+                SET NOCOUNT ON; 
+
+                EXEC @return_value = [Canteen].[bis_CanteenMaterialReturn_Update]
+                @CanteenmaterialReturnInsert = ?,
+                @CanteenmaterialReturnListInsert = ?,
+                @CanteenmaterialReturnListUpdate = ?,
+                @UID = ?,
+                @successful = @successful OUTPUT
+
+                SELECT @successful as N'@successful'
+                SELECT 'Return Value' = @return_value
+             """
+
+        values = (CanteenMaterialReturnXML, i_CanteenMaterialReturnListXML, u_CanteenMaterialReturnListXML,
+                  UID)
+        res = py_connection.call_prop_return_pk1(qry, values)
+        if res and len(res[0]) > 1 and len(res[0][0]) > 0 and res[0][0][0][0]:
+            return {"message": "Material Return Details Updated Successfully", "rval": 1}
+        else:
+            return {"message": "Material Return Updation Failed", "rval": 0}
     else:
+        qry = """ 
+                DECLARE @return_value int, @successful bit
+                SET NOCOUNT ON; 
+
+                EXEC @return_value = [Canteen].[bis_CanteenMaterialReturn_Insert]
+                @CanteenmaterialReturnInsert = ?, 
+                @CanteenmaterialReturnListInsert = ?, 
+                @DocumetTypeId = ?, 
+                @Branch_ID = ?, 
+                @Year = ?, 
+                @DocumentDate = ?, @successful = @successful OUTPUT
+
+                SELECT @successful as N'@successful'
+                SELECT 'Return Value' = @return_value
+             """
+
         values = (CanteenMaterialReturnXML, i_CanteenMaterialReturnListXML,
                   80700, decoded['branch_id'], Year()[0]["Yr"], dt.now())
-        print(values, '00992')
-        py_connection.call_prop("{call Canteen.bis_CanteenMaterialReturn_Insert"
-                                "(?,?,?,?,?,?)}", values)
-        return {"message": "Material Return Inserted Successfully", "rval": 1}
+        res = py_connection.call_prop(qry, values)
+
+        if res and len(res[0]) > 1 and len(res[0][1]) > 0 and res[0][1][0][0]:
+            return {"message": "Material Return Details Inserted Successfully", "rval": 1}
+        else:
+            return {"message": "Material Return Insertion Failed", "rval": 0}
 
 
 def find_new_record(mar_list):
