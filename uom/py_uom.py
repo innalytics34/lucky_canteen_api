@@ -12,11 +12,11 @@ def uom_insert_update(request):
 
         if UID not in [0, '0', '']:
             py_connection.put_result("{call Canteen.Bis_UOMMaster_Update"
-                        "(?,?,?,?,?,?)}", (UID, UOM, Description, BaseUOM, ActiveStatus, Factor))
+                                     "(?,?,?,?,?,?)}", (UID, UOM, Description, BaseUOM, ActiveStatus, Factor))
             stat = "updated"
         else:
             py_connection.put_result("{call Canteen.Bis_UOMMaster_Insert"
-                        "(?,?,?,?,?,?)}", (0, UOM, Description, BaseUOM, ActiveStatus, Factor))
+                                     "(?,?,?,?,?,?)}", (0, UOM, Description, BaseUOM, ActiveStatus, Factor))
             stat = "inserted"
 
         return {"message": "Data " + stat + " successfully", "rval": 1}
@@ -35,11 +35,11 @@ def uomconversion_insert_update(request):
 
         if UID not in [0, '0', '']:
             py_connection.put_result("{call Canteen.Bis_UOMConversion_Update"
-                        "(?,?,?,?,?)}", (UID, UOM_UID, BaseUnit, Factor, ActiveStatus))
+                                     "(?,?,?,?,?)}", (UID, UOM_UID, BaseUnit, Factor, ActiveStatus))
             stat = "updated"
         else:
             py_connection.put_result("{call Canteen.Bis_UOMConversion_Insert"
-                        "(?,?,?,?,?)}", (0, UOM_UID, BaseUnit, Factor, ActiveStatus))
+                                     "(?,?,?,?,?)}", (0, UOM_UID, BaseUnit, Factor, ActiveStatus))
             stat = "inserted"
 
         return {"message": "Data " + stat + " successfully", "rval": 1}

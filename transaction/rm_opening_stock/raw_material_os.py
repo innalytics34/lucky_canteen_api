@@ -38,3 +38,4 @@ def RawMaterialOpeningStock(request, decoded):   # ADDD1 --- decimal, ADDI1 --- 
         return {"message": "Raw Material Opening Stock Details " + str(action) + ' '+ str(status), "rval": rval}
     except Exception as e:
         print(str(e))
+        return {"message": "Something Went Wrong ", "rval": 0}
