@@ -11,12 +11,14 @@ def uom_insert_update(request):
         Factor = request.get("Factor")
 
         if UID not in [0, '0', '']:
+
             py_connection.put_result("{call Canteen.Bis_UOMMaster_Update"
                                      "(?,?,?,?,?,?)}", (UID, UOM, Description, BaseUOM, ActiveStatus, Factor))
             stat = "updated"
         else:
-            py_connection.put_result("{call Canteen.Bis_UOMMaster_Insert"
-                                     "(?,?,?,?,?,?)}", (0, UOM, Description, BaseUOM, ActiveStatus, Factor))
+            res = py_connection.put_result("{call Canteen.Bis_UOMMaster_Insert"
+                                           "(?,?,?,?,?,?)}", (0, UOM, Description, BaseUOM, ActiveStatus, Factor))
+            print(res, '123')
             stat = "inserted"
 
         return {"message": "Data " + stat + " successfully", "rval": 1}

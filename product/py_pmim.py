@@ -18,18 +18,53 @@ def pmim_insert_update(request, decoded):
         itemListupdateXML = item_master_list(itemListUpdate, decoded, element_name)
         print(itemListupdateXML, '004')
         if UID not in ['', 0, '0']:
-            values = (ProductMasterXML, ItemMaster, itemListinsertXML, itemListupdateXML, UID, 0)
-            print(values, '0202')
-            py_connection.put_result("{call Canteen.Bis_ProductMaster_ItemMasters"
-                                     "(?,?,?,?,?,?)}", values)
-            stat = "updated"
+            qry = """ 
+                    DECLARE @return_value int, 
+                    @successful bit
+                    SET NOCOUNT ON; 
+
+                    EXEC @return_value = [Canteen].[Bis_ProductMaster_ItemMasters]
+                    @ProductMasterInsert = ?, 
+                    @ItemMasterInsert = ?,
+                    @ItemMasterListInsert = ?, 
+                    @ItemMasterListUpdate = ?,
+                    @UID = ?,
+                    @successful = @successful OUTPUT
+
+                    SELECT @successful as N'@successful'
+                    SELECT 'Return Value' = @return_value
+                """
+
+            values = (ProductMasterXML, ItemMaster, itemListinsertXML, itemListupdateXML, UID)
+            res = py_connection.call_prop_return_pk1(qry, values)
+            if res and len(res[0]) > 1 and len(res[0][0]) > 0 and res[0][0][0][0]:
+                return {"message": "Item Master Details Updated Successfully", "rval": 1}
+            else:
+                return {"message": "Item Master Updation Failed", "rval": 0}
+
         else:
-            values = (ProductMasterXML, ItemMaster, itemListinsertXML, itemListupdateXML,  ProductCode, 0)
-            print(values, '20202')
-            py_connection.put_result("{call Canteen.Bis_ProductMaster_ItemMaster"
-                                     "(?,?,?,?,?,?)}", values)
-            stat = "inserted"
-        return {"message": "Data " + stat + " successfully", "rval": 1}
+            qry = """
+                    DECLARE @return_value int, 
+                    @successful bit
+                    SET NOCOUNT ON; 
+
+                    EXEC @return_value = [Canteen].[Bis_ProductMaster_ItemMaster]
+                    @ProductMasterInsert = ?, 
+                    @ItemMasterInsert = ?,
+                    @ItemMasterListInsert = ?, 
+                    @ItemMasterListUpdate = ?,
+                    @ProductCode = ?,
+                    @successful = @successful OUTPUT
+
+                    SELECT @successful as N'@successful'
+                    SELECT 'Return Value' = @return_value
+                """
+            values = (ProductMasterXML, ItemMaster, itemListinsertXML, itemListupdateXML,  ProductCode)
+            res = py_connection.call_prop_return_pk1(qry, values)
+            if res and len(res[0]) > 1 and len(res[0][0]) > 0 and res[0][0][0][0]:
+                return {"message": "Item Master Details Inserted Successfully", "rval": 1}
+            else:
+                return {"message": "Item Master Insertion Failed", "rval": 0}
     except Exception as e:
         print("pmim_insert_update " + str(e))
         return {"message": "Something went wrong!", "rval": 0}

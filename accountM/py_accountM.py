@@ -26,18 +26,17 @@ def accountM(request, decoded):
             AccountMContactXML = AccountMContacts(AccountMContactList, decoded, element_name_contact)
             AccountMContactsXML = AccountMContacts(AccountMContactsList, decoded, element_name_contacts)
 
-            svt_update(AccountMXML, accountMaddressXML, accountMaddresssXML, AccountMContactXML,
-                       AccountMContactsXML, accountM_uid)
-            response = "updated"
+            process, status, rval = svt_update(AccountMXML, accountMaddressXML, accountMaddresssXML, AccountMContactXML,
+                                               AccountMContactsXML, accountM_uid)
+
         else:
             element_name_contact = "AccountMContact"
             element_name_address = "AccountMAddress"
             AccountMXML = AccountM(accountM, decoded, AccountTypeM_UID)
             accountMaddressXML = accountMaddress(accountMAddress, decoded, element_name_address)
             AccountMContactXML = AccountMContacts(accountMContact, decoded, element_name_contact)
-            svt_insert(AccountMXML, accountMaddressXML, AccountMContactXML)
-            response = "inserted"
-        return {"message": "Data " + response + " successfully", "rval": 1}
+            process, status, rval = svt_insert(AccountMXML, accountMaddressXML, AccountMContactXML)
+        return {"message": "Data " + process + " "+ status, "rval": rval}
 
     elif form_type == 'vendor':
         AccountTypeM_UID = 400
@@ -57,18 +56,17 @@ def accountM(request, decoded):
             AccountMContactXML = AccountMContacts(AccountMContactList, decoded, element_name_contact)
             AccountMContactsXML = AccountMContacts(AccountMContactsList, decoded, element_name_contacts)
 
-            svt_update(AccountMXML, accountMaddressXML, accountMaddresssXML, AccountMContactXML,
-                       AccountMContactsXML, accountM_uid)
-            response = "updated"
+            process, status, rval = svt_update(AccountMXML, accountMaddressXML, accountMaddresssXML,
+                                               AccountMContactXML, AccountMContactsXML, accountM_uid)
+
         else:
             element_name_contact = "AccountMContact"
             element_name_address = "AccountMAddress"
             AccountMXML = AccountM(accountM, decoded, AccountTypeM_UID)
             accountMaddressXML = accountMaddress(accountMAddress, decoded, element_name_address)
             AccountMContactXML = AccountMContacts(accountMContact, decoded, element_name_contact)
-            svt_insert(AccountMXML, accountMaddressXML, AccountMContactXML)
-            response = "inserted"
-        return {"message": "Data " + response + " successfully", "rval": 1}
+            process, status, rval = svt_insert(AccountMXML, accountMaddressXML, AccountMContactXML)
+        return {"message": "Data " + process + " "+ status, "rval": rval}
 
     elif form_type == 'transport':
         AccountTypeM_UID = 500
@@ -88,18 +86,18 @@ def accountM(request, decoded):
             AccountMContactXML = AccountMContacts(AccountMContactList, decoded, element_name_contact)
             AccountMContactsXML = AccountMContacts(AccountMContactsList, decoded, element_name_contacts)
 
-            svt_update(AccountMXML, accountMaddressXML, accountMaddresssXML, AccountMContactXML,
-                       AccountMContactsXML, accountM_uid)
-            response = "updated"
+            process, status, rval = svt_update(AccountMXML, accountMaddressXML, accountMaddresssXML, AccountMContactXML,
+                                               AccountMContactsXML, accountM_uid)
+
         else:
             element_name_contact = "AccountMContact"
             element_name_address = "AccountMAddress"
             AccountMXML = AccountM(accountM, decoded, AccountTypeM_UID)
             accountMaddressXML = accountMaddress(accountMAddress, decoded, element_name_address)
             AccountMContactXML = AccountMContacts(accountMContact, decoded, element_name_contact)
-            svt_insert(AccountMXML, accountMaddressXML, AccountMContactXML)
-            response = "inserted"
-        return {"message": "Data " + response + " successfully", "rval": 1}
+            process, status, rval = svt_insert(AccountMXML, accountMaddressXML, AccountMContactXML)
+
+        return {"message": "Data " + process + " "+ status, "rval": rval}
 
 
 def find_new_record(accountMAddresslist, accountMContactlist):
@@ -113,26 +111,85 @@ def find_new_record(accountMAddresslist, accountMContactlist):
 
 def svt_update(AccountMXML, accountMaddressXML, accountMaddresssXML, AccountMContactXML,
                AccountMContactsXML, accountM_uid):
-    res = py_connection.put_result("{call Canteen.Bis_AccountM_Update"
-        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}",
-        (AccountMXML, AccountMContactXML, AccountMContactsXML, '', '', '', '', '', '', '', '', '', '', '',
-         '', '', '', '', '', '', '', '', '', accountMaddressXML, accountMaddresssXML, accountM_uid))
+    qry = """
+            DECLARE @return_value int, 
+                @successful bit;
+
+            SET NOCOUNT ON; 
+            
+            EXEC @return_value = [Canteen].[Bis_AccountM_Update]
+            @AccountMInsert = ?, 
+            @AccountMContactsInsert = ?,
+            @AccountMContactsUpdate = ?, 
+            @AccountMTermsInsert = ?,
+            @AccountMTermsUpdate = ?, 
+            @AccountMAgentInsert = ?,
+            @AccountMAgentUpdate = ?, 
+            @AccountMVolumeDescriptionInsert = ?, 
+            @AccountMVolumeDescriptionUpdate = ?, 
+            @AccountMTransPortInsert = ?, 
+            @AccountMTransPortUpdate = ?, 
+            @AccountMTransPortListInsert = ?, 
+            @AccountMTransPortListUpdate = ?, 
+            @AccountMTransportVehicleInsert = ?, 
+            @AccountMTransportVehicleUpdate = ?, 
+            @CompanyDetailsInsert = ?, 
+            @CompanyDetailsUpdate = ?, 
+            @CompanyDetailsContactactsInsert = ?, 
+            @CompanyDetailsContactsUpdate = ?, 
+            @AccountMTareCategoryInsert = ?, 
+            @AccountMTareCategoryUpdate = ?, 
+            @AccountMChargesInsert = ?, 
+            @AccountMChargesUpdate = ?, 
+            @AccountMAddressInsert = ?, 
+            @AccountMAddressUpdate = ?, 
+            @UID = ?, 
+            @successful = @successful OUTPUT;
+        
+            SELECT @successful AS N'@successful';
+            SELECT 'Return Value' = @return_value;
+        """
+
+    res = py_connection.call_prop_return_pk1(qry, (AccountMXML, AccountMContactXML, AccountMContactsXML,
+                                                   '', '', '', '', '', '', '', '', '', '', '', '', '', '',
+                                                   '', '', '', '', '', '', accountMaddressXML,
+                                                   accountMaddresssXML, accountM_uid))
+    if res and len(res[0]) > 1 and len(res[0][0]) > 0 and res[0][0][0][0]:
+        return 'Updated', 'successfully', 1
+    else:
+        return 'Updation', 'Failed', 0
 
 
 def svt_insert(AccountMInsert, accountMaddressXML, AccountMContactXML):
-    res = py_connection.put_result("{call Canteen.Bis_AccountM_Insert"
-                             "(?,?,?,?,?,?,?,?,?,?,?,?,?)}",
-                             (AccountMInsert, AccountMContactXML, '', '', '', '', '', '',
-                              '', '', '', '', accountMaddressXML))
+    qry = """ 
+            DECLARE @return_value int, 
+            @successful bit
+            SET NOCOUNT ON; 
 
+            EXEC @return_value = [Canteen].[Bis_AccountM_Insert]
+            @AccountMInsert = ?, 
+            @AccountMContactsInsert = ?,
+            @AccountMTermsInsert = ?,
+            @AccountMAgentInsert = ?,
+            @AccountMVolumeDescriptionInsert = ?,
+            @AccountMTransPortInsert = ?,
+            @AccountMTransPortListInsert = ?,
+            @AccountMTransportVehicleInsert= ?,
+            @CompanyDetailsInsert = ?,
+            @CompanyDetailsContactactsInsert = ?,
+            @AccountMTareCategoryInsert = ?,
+            @AccountMChargesInsert = ?,
+            @AccountMAddressInsert = ?,
+            
+            @successful = @successful OUTPUT
 
+            SELECT @successful as N'@successful'
+            SELECT 'Return Value' = @return_value
+        """
 
-
-
-
-
-
-
-
-
-
+    res = py_connection.call_prop_return_pk1(qry, (AccountMInsert, AccountMContactXML, '', '', '',
+                                                   '', '', '', '', '', '', '', accountMaddressXML))
+    if res and len(res[0]) > 1 and len(res[0][0]) > 0 and res[0][0][0][0]:
+        return 'Inserted', 'successfully', 1
+    else:
+        return 'Insertion', 'Failed', 0

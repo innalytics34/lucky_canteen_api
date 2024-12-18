@@ -4,25 +4,25 @@ from datetime import datetime as dt
 from login.py_dropdown import Year
 
 def menu(request, decoded):
-    print(request, '333')
+    try:
+        print(request, '333')
 
-    UID = request.get("UID")
+        UID = request.get("UID")
 
-    CanteenMenuXML = menu_xml(request['menu'], decoded)
-    print(CanteenMenuXML, '444')
+        CanteenMenuXML = menu_xml(request['menu'], decoded)
 
-    CanteenMenuXMLListInsertXML, CanteenMenuXMLListUpdateXML = find_new_record(request['menu_list'])
+        CanteenMenuXMLListInsertXML, CanteenMenuXMLListUpdateXML = find_new_record(request['menu_list'])
 
-    element_lst = 'CanteenMenuList'
-    i_CanteenMenuXMLListInsertXML = menu_list_xml(CanteenMenuXMLListInsertXML, decoded, element_lst)
-    print(i_CanteenMenuXMLListInsertXML, '111')
+        element_lst = 'CanteenMenuList'
+        i_CanteenMenuXMLListInsertXML = menu_list_xml(CanteenMenuXMLListInsertXML, decoded, element_lst)
+        print(i_CanteenMenuXMLListInsertXML, '111')
 
-    element_lsts = 'CanteenMenuLists'
-    u_CanteenMenuXMLListUpdateXML = menu_list_xml(CanteenMenuXMLListUpdateXML, decoded, element_lsts)
-    print(u_CanteenMenuXMLListUpdateXML, '222')
+        element_lsts = 'CanteenMenuLists'
+        u_CanteenMenuXMLListUpdateXML = menu_list_xml(CanteenMenuXMLListUpdateXML, decoded, element_lsts)
+        print(u_CanteenMenuXMLListUpdateXML, '222')
 
-    if UID not in ['', 0, '0']:
-        qry = """ 
+        if UID not in ['', 0, '0']:
+            qry = """ 
                     DECLARE @return_value int, @successful bit, @DecUID int
                     SET NOCOUNT ON; 
 
@@ -34,33 +34,36 @@ def menu(request, decoded):
                     SELECT 'Return Value' = @return_value
                 """
 
-        values = (CanteenMenuXML, i_CanteenMenuXMLListInsertXML, u_CanteenMenuXMLListUpdateXML, UID)
-        res = py_connection.call_prop_return_pk1(qry, values)
-        if res and len(res[0]) > 1 and len(res[0][0]) > 0 and res[0][0][0][0]:
-            return {"message": "Canteen Menu Updated Successfully", "rval": 1}
+            values = (CanteenMenuXML, i_CanteenMenuXMLListInsertXML, u_CanteenMenuXMLListUpdateXML, UID)
+            res = py_connection.call_prop_return_pk1(qry, values)
+            if res and len(res[0]) > 1 and len(res[0][0]) > 0 and res[0][0][0][0]:
+                return {"message": "Canteen Menu Updated Successfully", "rval": 1}
+            else:
+                return {"message": "Canteen Menu Updated Failed", "rval": 0}
+
         else:
-            return {"message": "Canteen Menu Updated Failed", "rval": 0}
+            qry = """ 
+                DECLARE @return_value int, @successful bit, @DecUID int
+                SET NOCOUNT ON; 
+    
+                EXEC @return_value = [Canteen].[bis_CanteenMenu_Insert]
+                @CanteenMenuInsert = ?, @CanteenMenuListInsert = ?, @DocumetTypeId = ?, @Branch_ID = ?, @Year = ?, 
+                @DocumentDate = ?, @successful = @successful OUTPUT
+    
+                SELECT @successful as N'@successful'
+                SELECT 'Return Value' = @return_value
+            """
 
-    else:
-        qry = """ 
-            DECLARE @return_value int, @successful bit, @DecUID int
-            SET NOCOUNT ON; 
+            values = (CanteenMenuXML, i_CanteenMenuXMLListInsertXML, 80400, decoded["branch_id"], Year()[0]["Yr"], dt.now())
+            res = py_connection.call_prop_return_pk1(qry, values)
 
-            EXEC @return_value = [Canteen].[bis_CanteenMenu_Insert]
-            @CanteenMenuInsert = ?, @CanteenMenuListInsert = ?, @DocumetTypeId = ?, @Branch_ID = ?, @Year = ?, 
-            @DocumentDate = ?, @successful = @successful OUTPUT
-
-            SELECT @successful as N'@successful'
-            SELECT 'Return Value' = @return_value
-        """
-
-        values = (CanteenMenuXML, i_CanteenMenuXMLListInsertXML, 80400, decoded["branch_id"], Year()[0]["Yr"], dt.now())
-        res = py_connection.call_prop_return_pk1(qry, values)
-
-        if res and len(res[0]) > 1 and len(res[0][1]) > 0 and res[0][1][0][0]:
-            return {"message": "Canteen Menu Inserted Successfully", "rval": 1}
-        else:
-            return {"message": "Canteen Menu Insertion Failed", "rval": 0}
+            if res and len(res[0]) > 1 and len(res[0][1]) > 0 and res[0][1][0][0]:
+                return {"message": "Canteen Menu Inserted Successfully", "rval": 1}
+            else:
+                return {"message": "Canteen Menu Insertion Failed", "rval": 0}
+    except Exception as e:
+        print(str(e))
+        return {"message": "Something Went Wrong", "rval": 0}
 
 
 def find_new_record(menu_list):

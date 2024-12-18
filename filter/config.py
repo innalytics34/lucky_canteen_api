@@ -47,7 +47,7 @@ filter_config = {
             ]
         },
     "baseUOM": {
-        "data_source": "bis_Lookup_BaseUOM",
+            "data_source": "bis_Lookup_BaseUOM",
         "params": [
             {
                 "label": 'BaseUOM',
@@ -242,5 +242,14 @@ filter_config = {
                 "source": "request"
             }
         ]
-    }
+    },
+    "RMOS_BaseUom": {
+        "data_source": "bis_Lookup_UOMConversion",
+        "params": [
+            {
+                "label": "uid",
+                "source": "request"
+            }
+        ]
+    },
 }

@@ -11,16 +11,48 @@ def pmrm_insert_update(request, decoded):
         ProductCode = request.get("ProductCode")
 
         if UID not in ['', 0, '0']:
-            values = (ProductMasterXML, RawMaterialMaster, UID, 0)
-            py_connection.put_result("{call Canteen.Bis_ProductMaster_RawMaterialMasters"
-                                     "(?,?,?,?)}", values)
-            stat = "updated"
+            qry = """ 
+                    DECLARE @return_value int, 
+                    @successful bit
+                    SET NOCOUNT ON; 
+    
+                    EXEC @return_value = [Canteen].[Bis_ProductMaster_RawMaterialMasters]
+                    @ProductMasterInsert = ?, 
+                    @RawMaterialMasterInsert = ?,
+                    @UID = ?,
+                    @successful = @successful OUTPUT
+    
+                    SELECT @successful as N'@successful'
+                    SELECT 'Return Value' = @return_value
+                """
+            values = (ProductMasterXML, RawMaterialMaster, UID)
+            res = py_connection.call_prop_return_pk1(qry, values)
+            if res and len(res[0]) > 1 and len(res[0][0]) > 0 and res[0][0][0][0]:
+                return {"message": "Raw Material Master Updated Successfully", "rval": 1}
+            else:
+                return {"message": "Raw Material Master Updation Failed", "rval": 0}
         else:
-            values = (ProductMasterXML, RawMaterialMaster, ProductCode, 0)
-            py_connection.put_result("{call Canteen.Bis_ProductMaster_RawMaterialMaster"
-                                     "(?,?,?,?)}", values)
-            stat = "inserted"
-        return {"message": "Data " + stat + " successfully", "rval": 1}
+            qry = """ 
+                    DECLARE @return_value int, 
+                    @successful bit
+                    SET NOCOUNT ON; 
+
+                    EXEC @return_value = [Canteen].[Bis_ProductMaster_RawMaterialMaster]
+                    @ProductMasterInsert = ?, 
+                    @RawMaterialMasterInsert = ?,
+                    @ProductCode = ?,
+                    @successful = @successful OUTPUT
+
+                    SELECT @successful as N'@successful'
+                    SELECT 'Return Value' = @return_value
+                """
+
+            values = (ProductMasterXML, RawMaterialMaster, ProductCode)
+            res = py_connection.call_prop_return_pk1(qry, values)
+            if res and len(res[0]) > 1 and len(res[0][0]) > 0 and res[0][0][0][0]:
+                return {"message": "Raw Material Master Inserted Successfully", "rval": 1}
+            else:
+                return {"message": "Raw Material Master Insertion Failed", "rval": 0}
     except Exception as e:
         print("pmrm_insert_update " + str(e))
         return {"message": "Something went wrong!", "rval": 0}
