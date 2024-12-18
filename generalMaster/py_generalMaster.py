@@ -16,16 +16,16 @@ def generalMaster_insert_update(request, decoded):
         MasterParentType_UID = request.get('MasterParentType_UID')
 
         if UID not in [0, '0', '']:
-            values = (UID, BranchID, BranchID, MasterTypeM_UID, Code, Description, Remarks, Active, IsFixed,
+            values = (UID, BranchID, MasterTypeM_UID, Code, Description, Remarks, Active, IsFixed,
                       IsReqForSysAccess, Type_UID, MasterParentType_UID)
             py_connection.put_result("{call Canteen.bis_MasterM_Update"
-                                     "(?,?,?,?,?,?,?,?,?,?,?,?)}", values)
+                                     "(?,?,?,?,?,?,?,?,?,?,?)}", values)
             stat = "updated"
         else:
-            values = (UID, BranchID, BranchID, MasterTypeM_UID, Code, Description, Remarks, Active, IsFixed,
+            values = (UID, BranchID, MasterTypeM_UID, Code, Description, Remarks, Active, IsFixed,
                       IsReqForSysAccess, Type_UID, MasterParentType_UID)
             py_connection.put_result("{call Canteen.bis_MasterM_Insert"
-                                     "(?,?,?,?,?,?,?,?,?,?,?,?)}", values)
+                                     "(?,?,?,?,?,?,?,?,?,?,?)}", values)
             stat = "inserted"
 
         return {"message": "Data " + stat + " successfully", "rval": 1}
