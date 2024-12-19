@@ -144,8 +144,8 @@ def RawMaterialOpeningStock(request, decoded):   # ADDD1 --- decimal, ADDI1 --- 
                       request["LocationID"], request["Location"], request["ADDD1"], request["ADDD2"], request["ADDD3"],
                       request["ADDD4"], request["ADDD5"], request["ADDI1"], request["ADDI2"], request["ADDI3"],
                       request["ADDI4"], request["ADDI5"], request["ADDT1"], request["ADDT2"], request["ADDT3"],
-                      request["ADDT4"], request["ADDT5"], request["ADDDT1"], request["ADDDT2"], request["ADDDT3"],
-                      request["ADDDT4"], request["ADDDT5"])
+                      request["ADDT4"], request["ADDT5"], dt.now(), dt.now(), dt.now(),
+                      dt.now(), dt.now())
 
             res = py_connection.call_prop(qry, params)
 
