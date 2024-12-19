@@ -10,62 +10,64 @@ def RawMaterialOpeningStock(request, decoded):   # ADDD1 --- decimal, ADDI1 --- 
         else:
             sp = 'bis_RawMaterialOpeningStock_Update'
         qry = """ 
-            DECLARE @return_value int, @successful bit
+            DECLARE @return_value int,
+            @UID int
+
             SET NOCOUNT ON; 
 
-            EXEC @return_value = [Canteen].{""" + sp + """}
+            EXEC @return_value = [Canteen].[""" + sp + """]
             @UID = ?, 
-            @Branch_ID = ?, 
-            @User_ID = ?, 
+            @BranchID = ?, 
+            @LogOnUser = ?, 
             @Year = ?, 
-            @LongDocumentNo = ?, 
+            @LongDocumentNo = ?,
             @DocumentDate = ?, 
             @DocumentTypeID = ?, 
             @BatchID = ?, 
             @ItemID = ?, 
-            @ItemDescription = ?, 
+            @ItemDescription = ?,
             @PartNo = ?, 
-            @UOMID = ?, 
+            @UOMID = ?,
             @UOM = ?, 
             @BaseUOMID = ?, 
-            @BaseUOM = ?, 
+            @BaseUOM = ?,
             @BaseUOMQty = ?, 
             @Qty = ?, 
             @TotalQty = ?, 
             @Price = ?, 
-            @Remarks = ?, 
+            @Remarks = ?,
             @Status = ?, 
             @CreatedBy = ?, 
             @CreatedDate = ?, 
-            @ModifiedBy = ?, 
-            @ModifiedDate = ?, 
+            @UpdatedBy = ?,
+            @UpdatedDate = ?,
             @LocationID = ?, 
             @Location = ?, 
             @ADDD1 = ?, 
             @ADDD2 = ?, 
-            @ADDD3 = ?, 
+            @ADDD3 = ?,
             @ADDD4 = ?, 
             @ADDD5 = ?, 
             @ADDI1 = ?, 
-            @ADDI2 = ?, 
-            @ADDI3 = ?, 
+            @ADDI2 = ?,
+            @ADDI3 = ?,
             @ADDI4 = ?, 
             @ADDI5 = ?, 
             @ADDT1 = ?, 
             @ADDT2 = ?, 
-            @ADDT3 = ?, 
+            @ADDT3 = ?,
             @ADDT4 = ?, 
             @ADDT5 = ?, 
             @ADDDT1 = ?, 
             @ADDDT2 = ?, 
             @ADDDT3 = ?, 
             @ADDDT4 = ?, 
-            @ADDDT5 = ?, 
-            @successful = @successful OUTPUT
+            @ADDDT5 = ?
 
-            SELECT @successful as N'@successful'
-            SELECT 'Return Value' = @return_value
+            SELECT	@UID as N'@UID'
+            SELECT	'Return Value' = @return_value
         """
+        print(qry, '1234')
         params = (request["UID"], decoded["branch_id"], decoded["user_id"], Year()[0]["Yr"], request["LongDocumentNo"],
                   request["DocumentDate"], request["DocumentTypeID"], request["BatchID"], request["ItemID"], request["ItemDescription"],
                   request["PartNo"], request["UOMID"], request["Uom"], request["BaseUOMID"], request["BaseUom"],
@@ -76,8 +78,9 @@ def RawMaterialOpeningStock(request, decoded):   # ADDD1 --- decimal, ADDI1 --- 
                   request["ADDI4"], request["ADDI5"], request["ADDT1"], request["ADDT2"], request["ADDT3"],
                   request["ADDT4"], request["ADDT5"], request["ADDDT1"], request["ADDDT2"], request["ADDDT3"],
                   request["ADDDT4"], request["ADDDT5"])
-
+        print(params, '1234')
         res = py_connection.call_prop_return_pk1(qry, params)
+        print(res, '1234567')
         if request['type'] == 'Insert':
             if res and len(res[0]) > 1 and len(res[0][1]) > 0 and res[0][1][0][0]:
                 return {"message": "Raw Material Opening Stock Inserted Successfully", "rval": 1}
