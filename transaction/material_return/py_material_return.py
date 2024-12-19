@@ -62,7 +62,7 @@ def mar_insert_update(request, decoded):  # 80700
 
         values = (CanteenMaterialReturnXML, i_CanteenMaterialReturnListXML,
                   80700, decoded['branch_id'], Year()[0]["Yr"], dt.now())
-        res = py_connection.call_prop(qry, values)
+        res = py_connection.call_prop_return_pk1(qry, values)
 
         if res and len(res[0]) > 1 and len(res[0][1]) > 0 and res[0][1][0][0]:
             return {"message": "Material Return Details Inserted Successfully", "rval": 1}

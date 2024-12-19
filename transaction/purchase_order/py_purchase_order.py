@@ -89,7 +89,7 @@ def po_insert_update(request, decoded):
              """
         values = (CanteenPurchaseOrderXML, i_CanteenPurchaseOrderListXML, i_CanteenPurchaseOrderChargesXML,
                   i_CanteenPurchaseOrderItermsXML, 80200, 100000, Year()[0]["Yr"], dt.now())
-        res = py_connection.call_prop(qry, values)
+        res = py_connection.call_prop_return_pk1(qry, values)
         if res and len(res[0]) > 1 and len(res[0][1]) > 0 and res[0][1][0][0]:
             return {"message": "Purchase Order Details Inserted Successfully", "rval": 1}
         else:
