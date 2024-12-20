@@ -48,10 +48,14 @@ def mi_insert_update(request, decoded):
                 SET NOCOUNT ON; 
 
                 EXEC @return_value = [Canteen].[bis_CanteenMaterialInward_Update]
-                @CanteenMaterialInwardInsert = ?, @CanteenMaterialInwardListInsert = ?,
-                @CanteenMaterialInwardListUpdate = ?, @CanteenMaterialInwardChargesInsert = ?,
-                @CanteenMaterialInwardChargesUpdate =?, @CanteenMaterialInwardTermsInsert = ?,
-                @CanteenMaterialInwardTermsUpdate = ?, @UID = ?,
+                @CanteenMaterialInwardInsert = ?, 
+                @CanteenMaterialInwardListInsert = ?,
+                @CanteenMaterialInwardListUpdate = ?, 
+                @CanteenMaterialInwardChargesInsert = ?,
+                @CanteenMaterialInwardChargesUpdate =?, 
+                @CanteenMaterialInwardTermsInsert = ?,
+                @CanteenMaterialInwardTermsUpdate = ?, 
+                @UID = ?,
                 @successful = @successful OUTPUT
 
                 SELECT @successful as N'@successful'
@@ -72,10 +76,15 @@ def mi_insert_update(request, decoded):
                 SET NOCOUNT ON; 
 
                 EXEC @return_value = [Canteen].[bis_CanteenMaterialInward_Insert]
-                @CanteenMaterialInwardInsert = ?, @CanteenMaterialInwardListInsert = ?, 
-                @CanteenMaterialInwardChargesInsert = ?, @CanteenMaterialInwardTermsInsert = ?,
-                @DocumetTypeId = ?, @Branch_ID = ?, @Year = ?, 
-                @DocumentDate = ?, @successful = @successful OUTPUT
+                @CanteenMaterialInwardInsert = ?, 
+                @CanteenMaterialInwardListInsert = ?, 
+                @CanteenMaterialInwardChargesInsert = ?,
+                @CanteenMaterialInwardTermsInsert = ?,
+                @DocumetTypeId = ?, 
+                @Branch_ID = ?, 
+                @Year = ?, 
+                @DocumentDate = ?, 
+                @successful = @successful OUTPUT
 
                 SELECT @successful as N'@successful'
                 SELECT 'Return Value' = @return_value

@@ -23,11 +23,16 @@ def menu(request, decoded):
 
         if UID not in ['', 0, '0']:
             qry = """ 
-                    DECLARE @return_value int, @successful bit, @DecUID int
+                    DECLARE @return_value int, 
+                            @successful bit, 
+                            @DecUID int
                     SET NOCOUNT ON; 
 
                     EXEC @return_value = [Canteen].[bis_CanteenMenu_Update]
-                    @CanteenMenuInsert = ?, @CanteenMenuListInsert = ?, @CanteenMenuListUpdate = ?, @UID = ?,
+                    @CanteenMenuInsert = ?,
+                    @CanteenMenuListInsert = ?,
+                    @CanteenMenuListUpdate = ?, 
+                    @UID = ?,
                     @successful = @successful OUTPUT
 
                     SELECT @successful as N'@successful'
@@ -47,8 +52,13 @@ def menu(request, decoded):
                 SET NOCOUNT ON; 
     
                 EXEC @return_value = [Canteen].[bis_CanteenMenu_Insert]
-                @CanteenMenuInsert = ?, @CanteenMenuListInsert = ?, @DocumetTypeId = ?, @Branch_ID = ?, @Year = ?, 
-                @DocumentDate = ?, @successful = @successful OUTPUT
+                @CanteenMenuInsert = ?, 
+                @CanteenMenuListInsert = ?, 
+                @DocumetTypeId = ?, 
+                @Branch_ID = ?, 
+                @Year = ?, 
+                @DocumentDate = ?, 
+                @successful = @successful OUTPUT
     
                 SELECT @successful as N'@successful'
                 SELECT 'Return Value' = @return_value
