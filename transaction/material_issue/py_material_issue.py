@@ -25,8 +25,8 @@ def mai_insert_update(request, decoded):  # 80500
                 SET NOCOUNT ON; 
 
                 EXEC @return_value = [Canteen].[bis_CanteenMaterialIssue_Update]
-                @CanteenMaterialInwardInsert = ?, 
-                @CanteenMaterialInwardListInsert = ?,
+                @CanteenMaterialIssueInsert = ?, 
+                @CanteenMaterialIssueListInsert = ?,
                 @CanteenMaterialIssueListUpdate = ?,
                 @UID = ?,
                 @successful = @successful OUTPUT
