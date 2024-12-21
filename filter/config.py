@@ -34,7 +34,7 @@ filter_config = {
             "params": []
         },
     "hsn": {
-            "data_source": "bis_HSNSACMaster_TaxType",
+            "data_source": "bis_Lookup_HSNSAC",
             "params": []
         },
     "UOM": {
