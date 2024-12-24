@@ -137,6 +137,19 @@ fetch_config = {
             },
         ]
     },
+    "raw_material_by_fields": {
+        "data_source": "bis_RawMaterialMaster_SelectByField",
+        "params": [
+            {
+                "label": 'fieldName',
+                "source": "request"
+            },
+            {
+                "label": 'UID',
+                "source": "request"
+            },
+        ]
+    },
     "uomMaster": {
         "data_source": "Bis_UOMMaster_SelectAll",
         "params": []
