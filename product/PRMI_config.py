@@ -1,15 +1,15 @@
 from datetime import datetime as dt
 
 
-def product_master(data, decoded):
+def product_master(data, decoded, product_code):
     try:
-        xml_data = '<CanteenProductMaster>\n'
+        xml_data = '<CanteenProductMaster>'
         for row in data:
             xml_data += (
-                '    <CanteenProductMaster '
+                '<CanteenProductMaster '
                 f'UID="{row.get("UID", 0)}" '
                 f'BranchId="{decoded.get("branch_id", "")}" '
-                f'ProductCode="{row.get("ProductCode", "")}" '
+                f'ProductCode="{product_code}" '
                 f'ProductDescription="{row.get("ProductDescription", "")}" '
                 f'UOMID="{row.get("UOMID", "")}" '
                 f'UOMDescription="{row.get("UOMDescription", "")}" '
@@ -21,8 +21,7 @@ def product_master(data, decoded):
                 f'CreatedOn="{dt.now()}" '
                 f'UpdatedBy="{decoded.get("user_id", "")}" '
                 f'UpdatedOn="{dt.now()}" '
-                f'ProductCategory="{row.get("ProductCategory", "")}" '
-                '/>\n'
+                f'ProductCategory="{row.get("ProductCategory", "")}" />'
             )
         xml_data += '</CanteenProductMaster>'
         return xml_data
@@ -30,13 +29,15 @@ def product_master(data, decoded):
         print("product_master " + str(e))
 
 
-def raw_material(data):
+def raw_material(data, product_code):
     try:
-        xml_data = '<RawMaterialMaster>\n'
+        xml_data = '<RawMaterialMaster>'
         for row in data:
             xml_data += (
-                '    <RawMaterialMaster '
+                '<RawMaterialMaster '
+                f'UID="{row.get("UID", "")}" '
                 f'PartNo="{row.get("PartNo", "")}" '
+                f'ItemCode="{product_code}" '
                 f'ItemDescription="{row.get("ItemDescription", "")}" '
                 f'ItemTypeID="{row.get("ItemTypeID", "")}" '
                 f'ItemType="{row.get("ItemType", "")}" '
@@ -60,8 +61,7 @@ def raw_material(data):
                 f'ADDDT2="{dt.now()}" '
                 f'ADDDT3="{dt.now()}" '
                 f'ADDDT4="{dt.now()}" '
-                f'ADDDT5="{dt.now()}" '
-                '/>\n'
+                f'ADDDT5="{dt.now()}" />'
             )
         xml_data += '</RawMaterialMaster>'
         return xml_data

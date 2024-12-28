@@ -6,9 +6,9 @@ def pmrm_insert_update(request, decoded):
     try:
         print(request, "-------fg")
         UID = request.get("UID")
-        ProductMasterXML = product_master(request.get("purchase_master"), decoded)
-        RawMaterialMaster = raw_material(request.get("raw_material"))
         ProductCode = request.get("ProductCode")
+        ProductMasterXML = product_master(request.get("purchase_master"), decoded, ProductCode)
+        RawMaterialMaster = raw_material(request.get("raw_material"), ProductCode)
 
         if UID not in ['', 0, '0']:
             qry = """ 
