@@ -554,5 +554,135 @@ fetch_config = {
                 "source": "request"
             }
         ]
+    },
+    "MI_Report": {
+        "data_source": "Report_CanteenMaterialInward",
+        "params": [
+            {
+                "label": "uid",  # UID
+                "source": "request"
+            }
+        ]
+    },
+    "MI_ReportList": {
+        "data_source": "Report_CanteenMaterialInwardList",
+        "params": [
+            {
+                "label": "uid",
+                "source": "request"
+            }
+        ]
+    },
+    "MI_ReportCharges": {
+        "data_source": "Report_CanteenMaterialInwardCharges",
+        "params": [
+            {
+                "label": "uid",
+                "source": "request"
+            }
+        ]
+    },
+    "MI_ReportTerms": {
+        "data_source": "Report_CanteenMaterialInwardTerms",
+        "params": [
+            {
+                "label": "uid",
+                "source": "request"
+            }
+        ]
+    },
+    "MaI_Report": {
+        "data_source": "Report_CanteenMaterialIssue",
+        "params": [
+            {
+                "label": "uid",
+                "source": "request"
+            }
+        ]
+    },
+    "MaI_ReportList": {
+        "data_source": "Report_CanteenMaterialIssueList",
+        "params": [
+            {
+                "label": "uid",
+                "source": "request"
+            }
+        ]
+    },
+    "Mar_Report": {
+        "data_source": "Report_CanteenMaterialReturn",
+        "params": [
+            {
+                "label": "uid",
+                "source": "request"
+            }
+        ]
+    },
+    "Mar_ReportList": {
+        "data_source": "Report_CanteenMaterialReturnList",
+        "params": [
+            {
+                "label": "uid",
+                "source": "request"
+            }
+        ]
+    },
+    "PO_Report": {
+        "data_source": "Report_CanteenPurchaseOrder",
+        "params": [
+            {
+                "label": "uid",
+                "source": "request"
+            }
+        ]
+    },
+    "PO_ReportList": {
+        "data_source": "Report_CanteenPurchaseOrderList",
+        "params": [
+            {
+                "label": "uid",
+                "source": "request"
+            }
+        ]
+    },
+    "PO_ReportCharges": {
+        "data_source": "Report_CanteenPurchaseOrderCharges",
+        "params": [
+            {
+                "label": "uid",
+                "source": "request"
+            }
+        ]
+    },
+    "PO_ReportTerms": {
+        "data_source": "Report_CanteenPurchaseOrderTerms",
+        "params": [
+            {
+                "label": "uid",
+                "source": "request"
+            }
+        ]
+    },
+    "ExpenseReport": {
+        "data_source": "Report_DailyCanteenExpenses",
+        "params": [
+            {
+                "label": "ToDate",
+                "source": "request"
+            }
+        ]
+    },
+    "RawMaterialCurrentStock": {
+        "data_source": "Report_RawMaterialCurrentStock",
+        "params": []
+    },
+    "CompanyDetails": {
+        "data_source": "ReportCompanyDetails",
+        "params": [
+            {
+                "label": "branch_id",
+                "source": "decoded"
+            }
+        ]
     }
 }
