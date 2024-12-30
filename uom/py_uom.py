@@ -1,5 +1,9 @@
 from db_connection import py_connection
+from logger.logger_config import logger
+import inspect
+import os
 
+directory = os.path.dirname(os.path.abspath(__file__))
 
 def uom_insert_update(request):
     try:
@@ -18,12 +22,13 @@ def uom_insert_update(request):
         else:
             res = py_connection.put_result("{call Canteen.Bis_UOMMaster_Insert"
                                            "(?,?,?,?,?,?)}", (0, UOM, Description, BaseUOM, ActiveStatus, Factor))
-            print(res, '123')
             stat = "inserted"
 
         return {"message": "Data " + stat + " successfully", "rval": 1}
     except Exception as e:
         print("uom_insert_update " + str(e))
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + ': ' + str(e))
         return {"message": "Something went wrong!", "rval": 0}
 
 
@@ -47,4 +52,6 @@ def uomconversion_insert_update(request):
         return {"message": "Data " + stat + " successfully", "rval": 1}
     except Exception as e:
         print("uom_insert_update " + str(e))
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + ': ' + str(e))
         return {"message": "Something went wrong!", "rval": 0}

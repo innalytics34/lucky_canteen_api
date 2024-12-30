@@ -1,6 +1,11 @@
 from charges.py_charges import charges_insert_update, add_charges_insert
 from db_connection import py_connection
 from datetime import datetime as dt
+import os
+from logger.logger_config import logger
+import inspect
+
+directory = os.path.dirname(os.path.abspath(__file__))
 
 
 def add_charges_insert_update(request, decoded):
@@ -48,4 +53,6 @@ def add_charges_insert_update(request, decoded):
         return {"message": "Data " + stat + " successfully", "rval": 1}
     except Exception as e:
         print("uom_insert_update " + str(e))
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + ': ' + str(e))
         return {"message": "Something went wrong!", "rval": 0}

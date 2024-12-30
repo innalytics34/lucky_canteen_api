@@ -1,22 +1,22 @@
 from db_connection import py_connection
 from product.PRMI_config import product_master, item_master, item_master_list
+import os
+from logger.logger_config import logger
+import inspect
 
+directory = os.path.dirname(os.path.abspath(__file__))
 
 def pmim_insert_update(request, decoded):
     try:
-        print(request, '002')
         UID = request.get("UID")
-        print(UID, '001')
-        ProductMasterXML = product_master(request.get("purchase_master"), decoded)
-        print(ProductMasterXML, '091')
-        ItemMaster = item_master(request.get("item_master"))
         ProductCode = request.get("ProductCode")
+        ProductMasterXML = product_master(request.get("purchase_master"), decoded, ProductCode)
+        ItemMaster = item_master(request.get("item_master"))
         itemListInsert, itemListUpdate = find_new_record(request.get("item_master_list"))
+
         element_name = 'ItemMasterList'
         itemListinsertXML = item_master_list(itemListInsert, decoded, element_name)
-        print(itemListinsertXML, '003')
         itemListupdateXML = item_master_list(itemListUpdate, decoded, element_name)
-        print(itemListupdateXML, '004')
         if UID not in ['', 0, '0']:
             qry = """ 
                     DECLARE @return_value int, 
@@ -67,6 +67,8 @@ def pmim_insert_update(request, decoded):
                 return {"message": "Item Master Insertion Failed", "rval": 0}
     except Exception as e:
         print("pmim_insert_update " + str(e))
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + ': ' + str(e))
         return {"message": "Something went wrong!", "rval": 0}
 
 

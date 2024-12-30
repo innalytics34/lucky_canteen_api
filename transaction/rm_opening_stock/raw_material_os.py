@@ -1,10 +1,14 @@
 from db_connection import py_connection
 from datetime import datetime as dt
 from login.py_dropdown import Year
+from logger.logger_config import logger
+import inspect
+import os
+
+directory = os.path.dirname(os.path.abspath(__file__))
 
 def RawMaterialOpeningStock(request, decoded):   # ADDD1 --- decimal, ADDI1 --- int, ADDT1 --- varchar, ADDDT1 -- datetime
     try:                                         # DocumentTypeId: 80100
-        print(request, '008')
         if request['type'] == 'Insert':
             sp = 'bis_RawMaterialOpeningStock_Insert'
             qry = """ 
@@ -159,4 +163,6 @@ def RawMaterialOpeningStock(request, decoded):   # ADDD1 --- decimal, ADDI1 --- 
 
     except Exception as e:
         print(str(e))
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + ': ' + str(e))
         return {"message": "Something Went Wrong ", "rval": 0}

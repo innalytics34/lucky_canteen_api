@@ -2,6 +2,11 @@ from auth.py_jwt import signJWT
 from db_connection import py_connection
 from Crypto.Cipher import DES3
 import base64
+import os
+import inspect
+from logger.logger_config import logger
+
+directory = os.path.dirname(os.path.abspath(__file__))
 
 
 key = b'Binary--Solution'
@@ -29,6 +34,8 @@ def fn_login(request):
             return {"message": "Username or password is incorrect", "rval": 0, "data": [],  "token": ""}
     except Exception as e:
         print(str(e))
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + str(e))
         return {"message": "Something went wrong", "rval": 0}
 
 

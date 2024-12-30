@@ -1,5 +1,9 @@
 from datetime import datetime as dt
+import os
+from logger.logger_config import logger
+import inspect
 
+directory = os.path.dirname(os.path.abspath(__file__))
 
 def product_master(data, decoded, product_code):
     try:
@@ -27,6 +31,8 @@ def product_master(data, decoded, product_code):
         return xml_data
     except Exception as e:
         print("product_master " + str(e))
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + ': ' + str(e))
 
 
 def raw_material(data, product_code):
@@ -67,6 +73,8 @@ def raw_material(data, product_code):
         return xml_data
     except Exception as e:
         print("raw_material " + str(e))
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + ': ' + str(e))
 
 
 def item_master(data):
@@ -107,7 +115,8 @@ def item_master(data):
         return xml_data
     except Exception as e:
         print("item_master " + str(e))
-
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + ': ' + str(e))
 
 def item_master_list(data, decoded, element_name):
     try:
@@ -158,3 +167,5 @@ def item_master_list(data, decoded, element_name):
         return xml_data
     except Exception as e:
         print("item_master_list " + str(e))
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + ': ' + str(e))

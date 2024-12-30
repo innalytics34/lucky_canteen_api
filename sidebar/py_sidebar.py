@@ -1,6 +1,10 @@
 from db_connection import py_connection
 from sidebar.user_rights import ScreenRightsAsPerEmployee
+from logger.logger_config import logger
+import inspect
+import os
 
+directory = os.path.dirname(os.path.abspath(__file__))
 
 def GetMenu(decoded):
     try:
@@ -44,6 +48,8 @@ def GetMenu(decoded):
         return {"main_menu": lst}
     except Exception as e:
         print(str(e))
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + ': ' + str(e))
         return {"main_menu": []}
 
 
@@ -76,13 +82,20 @@ def GetMenuNames():
 
     except Exception as e:
         print(str(e))
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + ': ' + str(e))
         return {"main_menu": []}
 
 
 def GetMenuBasedOnRights(emp_fk, menu):
-    qry = '{call canteen.bis_MenuRightsList_Select_ByUserIdAndMenuName (?,?)}'
-    res, k = py_connection.call_prop1(qry, (emp_fk, menu))
-    if res and len(res) > 0:
-        return res[0][0]
-    else:
-        return 0
+    try:
+        qry = '{call canteen.bis_MenuRightsList_Select_ByUserIdAndMenuName (?,?)}'
+        res, k = py_connection.call_prop1(qry, (emp_fk, menu))
+        if res and len(res) > 0:
+            return res[0][0]
+        else:
+            return 0
+    except Exception as e:
+        print(str(e))
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + ': ' + str(e))

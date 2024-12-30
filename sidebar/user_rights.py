@@ -1,5 +1,9 @@
 from db_connection import py_connection
+from logger.logger_config import logger
+import inspect
+import os
 
+directory = os.path.dirname(os.path.abspath(__file__))
 
 def ScreenRightsAsPerEmployee(screen_name, decoded):
     try:
@@ -28,3 +32,5 @@ def ScreenRightsAsPerEmployee(screen_name, decoded):
         return permissions
     except Exception as e:
         print(str(e))
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + ': ' + str(e))

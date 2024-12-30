@@ -1,10 +1,13 @@
 from db_connection import py_connection
 from product.PRMI_config import product_master, raw_material
+import os
+from logger.logger_config import logger
+import inspect
 
+directory = os.path.dirname(os.path.abspath(__file__))
 
 def pmrm_insert_update(request, decoded):
     try:
-        print(request, "-------fg")
         UID = request.get("UID")
         ProductCode = request.get("ProductCode")
         ProductMasterXML = product_master(request.get("purchase_master"), decoded, ProductCode)
@@ -55,6 +58,8 @@ def pmrm_insert_update(request, decoded):
                 return {"message": "Raw Material Master Insertion Failed", "rval": 0}
     except Exception as e:
         print("pmrm_insert_update " + str(e))
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + ': ' + str(e))
         return {"message": "Something went wrong!", "rval": 0}
 
 

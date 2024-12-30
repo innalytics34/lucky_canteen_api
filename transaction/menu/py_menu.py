@@ -1,12 +1,16 @@
+import os
 from db_connection import py_connection
 from transaction.menu.m_config import menu_xml, menu_list_xml
 from datetime import datetime as dt
 from login.py_dropdown import Year
+from logger.logger_config import logger
+import inspect
+
+directory = os.path.dirname(os.path.abspath(__file__))
+
 
 def menu(request, decoded):
     try:
-        print(request, '333')
-
         UID = request.get("UID")
 
         CanteenMenuXML = menu_xml(request['menu'], decoded)
@@ -15,11 +19,10 @@ def menu(request, decoded):
 
         element_lst = 'CanteenMenuList'
         i_CanteenMenuXMLListInsertXML = menu_list_xml(CanteenMenuXMLListInsertXML, decoded, element_lst)
-        print(i_CanteenMenuXMLListInsertXML, '111')
+
 
         element_lsts = 'CanteenMenuLists'
         u_CanteenMenuXMLListUpdateXML = menu_list_xml(CanteenMenuXMLListUpdateXML, decoded, element_lsts)
-        print(u_CanteenMenuXMLListUpdateXML, '222')
 
         if UID not in ['', 0, '0']:
             qry = """ 
@@ -73,6 +76,8 @@ def menu(request, decoded):
                 return {"message": "Canteen Menu Insertion Failed", "rval": 0}
     except Exception as e:
         print(str(e))
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + ': '+ str(e))
         return {"message": "Something Went Wrong", "rval": 0}
 
 

@@ -1,5 +1,10 @@
 from datetime import datetime as dt
 from login.py_dropdown import Year
+from logger.logger_config import logger
+import inspect
+import os
+
+directory = os.path.dirname(os.path.abspath(__file__))
 
 
 def purchase_order_xml(data, decoded):
@@ -97,6 +102,8 @@ def purchase_order_xml(data, decoded):
 
     except Exception as e:
         print("Error in purchase_order_xml: " + str(e))
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + ': ' + str(e))
         return None
 
 
@@ -165,6 +172,8 @@ def purchase_order_list_xml(data, decoded, element_name):
         return xml_data
     except Exception as e:
         print("Error in purchase_order_list_xml: " + str(e))
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + ': ' + str(e))
         return None
 
 
@@ -197,6 +206,8 @@ def purchase_order_charges_xml(data, decoded, element_name):
         return xml_data
     except Exception as e:
         print("Error in purchase_order_charges_xml: " + str(e))
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + ': ' + str(e))
         return None
 
 
@@ -222,4 +233,6 @@ def purchase_order_terms_xml(data, decoded, element_name):
         return xml_data
     except Exception as e:
         print("Error in purchase_order_terms_xml: " + str(e))
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + ': ' + str(e))
         return None

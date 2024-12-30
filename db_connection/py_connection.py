@@ -2,6 +2,10 @@ import pyodbc
 from dotenv import load_dotenv
 from pathlib import Path
 import os
+from logger.logger_config import logger
+import inspect
+
+directory = os.path.dirname(os.path.abspath(__file__))
 
 env_path = str(Path(__file__).absolute().parents[1] / "config.env")
 load_dotenv(env_path)
@@ -15,6 +19,8 @@ def get_mssql_connection():
         return conn
     except Exception as e:
         print("get_mssql_connection " + str(e))
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + ': ' + str(e))
 
 
 def get_result(query):

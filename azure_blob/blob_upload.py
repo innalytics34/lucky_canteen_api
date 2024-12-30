@@ -5,11 +5,17 @@ import os
 from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
 import base64
 import json
+import os
+from logger.logger_config import logger
+import inspect
 
-connection_string = ("DefaultEndpointsProtocol=https;AccountName=iecstore;AccountKey"
-                     "=E52k3gjrBxRZ31swWniFzziNsj5TKrLAxEn/jranR/E+f7BFZpHOnso/tgFXKb5B0VSC09ZJHF85Ma2rsi01pw"
-                     "==;EndpointSuffix=core.windows.net")
-container_name = "wmpfiles"
+directory = os.path.dirname(os.path.abspath(__file__))
+
+
+# connection_string = ("DefaultEndpointsProtocol=https;AccountName=iecstore;AccountKey"
+#                      "=E52k3gjrBxRZ31swWniFzziNsj5TKrLAxEn/jranR/E+f7BFZpHOnso/tgFXKb5B0VSC09ZJHF85Ma2rsi01pw"
+#                      "==;EndpointSuffix=core.windows.net")
+# container_name = "wmpfiles"
 
 
 def blob_connection():
@@ -25,6 +31,8 @@ def blob_connection():
             raise ValueError("No Azure Blob connection details found in the database.")
     except:
         print("blob connection failed")
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + ': ' + str(e))
 
 
 def upload_to_azure_blob(base64string):
@@ -44,6 +52,8 @@ def upload_to_azure_blob(base64string):
         return "task_file/" + filename
     except Exception as e:
         print("Error uploading file to Azure Blob Storage:", e)
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + ': ' + str(e))
 
 
 def getfile_azure_blob(blob_name):
@@ -58,5 +68,7 @@ def getfile_azure_blob(blob_name):
             return {'base64string': ''}
     except Exception as e:
         print("Error downloading file from Azure Blob Storage:", e)
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + ': ' + str(e))
 
 

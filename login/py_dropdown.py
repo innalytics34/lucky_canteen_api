@@ -1,14 +1,20 @@
 from db_connection import py_connection
+import os
+import inspect
+from logger.logger_config import logger
+
+directory = os.path.dirname(os.path.abspath(__file__))
 
 
 def cy():
     try:
         company = CompanyName()
         year = Year()
-        print(year)
         return {"CompanyName": company, "Year": year}
     except Exception as e:
         print(str(e))
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + str(e))
 
 
 def CompanyName():
@@ -27,6 +33,8 @@ def CompanyName():
             return lst
     except Exception as e:
         print(str(e))
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + str(e))
         return []
 
 
@@ -46,6 +54,8 @@ def BranchName(request):
             return {"BranchName": lst}
     except Exception as e:
         print(str(e))
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + str(e))
         return {"BranchName": []}
 
 
@@ -63,6 +73,8 @@ def Year():
             return lst
     except Exception as e:
         print(str(e))
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + str(e))
         return []
 
 def UserName(request):
@@ -79,4 +91,6 @@ def UserName(request):
             return {"UserName": lst}
     except Exception as e:
         print(str(e))
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + str(e))
         return {"UserName": []}

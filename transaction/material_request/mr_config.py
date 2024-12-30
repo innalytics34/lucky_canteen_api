@@ -1,5 +1,10 @@
 from datetime import datetime as dt
 from login.py_dropdown import Year
+from logger.logger_config import logger
+import inspect
+import os
+
+directory = os.path.dirname(os.path.abspath(__file__))
 
 
 def material_request_xml(data, decoded):
@@ -58,6 +63,8 @@ def material_request_xml(data, decoded):
 
     except Exception as e:
         print("Error in material_request_xml: " + str(e))
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + ': ' + str(e))
         return None
 
 
@@ -111,6 +118,8 @@ def material_request_list_xml(data, decoded, element_name):
         return xml_data
     except Exception as e:
         print("Error in material_request_list_xml: " + str(e))
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + ': ' + str(e))
         return None
 
 
@@ -166,4 +175,6 @@ def material_request_details_xml(data, decoded, element_name):
         return xml_data
     except Exception as e:
         print("Error in material_request_details_xml: " + str(e))
+        function_name = inspect.currentframe().f_code.co_name
+        logger.error(directory + '|' + str(function_name) + ': ' + str(e))
         return None
