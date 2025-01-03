@@ -29,9 +29,11 @@ def get_proc(data, request, decoded):
             if res:
                 for row in res:
                     view_data = dict(zip(k, row))
-                    if view_data["Logo"]:
+                    if 'Logo' in view_data and view_data["Logo"]:
                         view_data["Logo"] = view_data["Logo"].decode("utf-8")
-                    lst.append(view_data)
+                        lst.append(view_data)
+                    else:
+                        lst.append(view_data)
                 return lst
             else:
                 return lst
