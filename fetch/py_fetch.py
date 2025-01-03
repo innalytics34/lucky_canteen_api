@@ -1,3 +1,5 @@
+import base64
+
 from db_connection import py_connection
 from fetch import fetch_config
 import os
@@ -30,7 +32,9 @@ def get_proc(data, request, decoded):
                 for row in res:
                     view_data = dict(zip(k, row))
                     if 'Logo' in view_data and view_data["Logo"]:
-                        view_data["Logo"] = view_data["Logo"].decode("utf-8")
+                        if isinstance(view_data["Logo"], bytes):
+                            # Base64 encode the binary data
+                            view_data["Logo"] = base64.b64encode(view_data["Logo"]).decode("utf-8")
                         lst.append(view_data)
                     else:
                         lst.append(view_data)
