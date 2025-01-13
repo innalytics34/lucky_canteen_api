@@ -21,10 +21,10 @@ def add_charges_insert_update(request, decoded):
         price = request.get('Price')
         hsn_code = request.get('HSNCode')
         active_status = request.get('ActiveStatus')
-        created_by = decoded.get('user_id')
-        created_on = dt.now()
-        updated_by = decoded.get('user_id')
-        updated_on = dt.now()
+        created_by = request.get('CreatedBy')
+        created_on = request.get('CreatedDate')
+        updated_by = request.get('UpdatedBy')
+        updated_on = request.get('UpdatedDate')
         product_category = request.get('ProductCategory')
 
         if UID not in [0, '0', '']:

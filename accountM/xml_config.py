@@ -107,10 +107,10 @@ def AccountMContacts(contacts, decoded, element_name_contact):
                 f'PhoneNumber="{contact["PhoneNumber"]}" '
                 f'EmailID="{contact["EmailID"]}" '
                 f'IsRecordDeleted="{contact["IsRecordDeleted"]}" '
-                f'CreatedBy="{decoded["user_id"]}" '
-                f'CreatedDate="{dt.now()}" '
-                f'UpdatedBy="{decoded["user_id"]}" '
-                f'UpdateDate="{dt.now()}" '
+                f'CreatedBy="{contact["CreatedBy"]}" '
+                f'CreatedDate="{contact["CreatedDate"]}" '
+                f'UpdatedBy="{contact["UpdatedBy"]}" '
+                f'UpdateDate="{contact["UpdatedDate"]}" '
                 f'ADDT1="{""}" '
                 f'ADDT2="{""}" '
                 f'ADDT3="{""}" '
@@ -161,8 +161,8 @@ def accountMaddress(data, decoded, element_name_address):
                     Country="{row['Country']}"
                     Pincode="{row['Pincode']}"
                     Status="{row['Status']}"
-                    CreatedBy="{decoded["user_id"]}"
-                    UpdatedBy="{decoded["user_id"]}"
+                    CreatedBy="{row["CreatedBy"]}"
+                    UpdatedBy="{row["UpdatedBy"]}"
                     ADDT1="{""}"
                     ADDT2="{""}"
                     ADDT3="{""}"
