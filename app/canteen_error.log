@@ -5,3 +5,112 @@
 2025-01-13 13:19:30,809 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\sidebar|GetMenuNames: 'NoneType' object has no attribute 'cursor'
 2025-01-13 13:19:50,102 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\db_connection|get_mssql_connection: ('08001', '[08001] [Microsoft][ODBC SQL Server Driver][DBNETLIB]SQL Server does not exist or access denied. (17) (SQLDriverConnect); [08001] [Microsoft][ODBC SQL Server Driver][DBNETLIB]ConnectionOpen (Connect()). (53)')
 2025-01-13 13:19:50,103 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\sidebar|GetMenuNames: 'NoneType' object has no attribute 'cursor'
+2025-01-13 13:21:00,945 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-01-13 13:21:23,354 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:21:23,355 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:21:23,357 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:21:23,357 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:21:23,358 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:21:23,358 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:21:23,360 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\fetch|get_params: 'AccountID'
+2025-01-13 13:21:23,360 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\fetch|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:21:23,361 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:21:23,361 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:21:23,363 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\fetch|get_params: 'AccountM_UID'
+2025-01-13 13:21:23,363 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\fetch|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:21:23,365 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:21:23,365 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:21:23,366 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:21:23,366 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:21:23,368 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:21:23,368 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:21:23,370 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:21:23,370 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:30:35,741 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:30:35,741 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:30:35,745 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:30:35,746 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:30:35,748 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:30:35,749 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:30:35,751 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:30:35,752 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:30:35,754 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\fetch|get_params: 'AccountID'
+2025-01-13 13:30:35,754 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\fetch|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:30:35,757 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\fetch|get_params: 'AccountM_UID'
+2025-01-13 13:30:35,757 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\fetch|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:30:35,846 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:30:35,847 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:30:35,848 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:30:35,850 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:30:35,852 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:30:35,852 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:30:35,853 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:30:35,854 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:04,463 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:31:04,463 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:04,466 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:31:04,466 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:04,468 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:31:04,468 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:04,469 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:31:04,469 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:04,470 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\fetch|get_params: 'AccountID'
+2025-01-13 13:31:04,470 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\fetch|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:04,472 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\fetch|get_params: 'AccountM_UID'
+2025-01-13 13:31:04,473 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\fetch|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:04,475 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:31:04,476 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:04,477 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:31:04,478 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:04,479 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:31:04,479 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:04,480 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:31:04,481 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:06,205 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:31:06,205 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:06,206 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:31:06,206 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:06,208 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:31:06,208 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:06,209 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:31:06,209 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:06,210 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\fetch|get_params: 'AccountID'
+2025-01-13 13:31:06,210 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\fetch|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:06,213 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\fetch|get_params: 'AccountM_UID'
+2025-01-13 13:31:06,213 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\fetch|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:06,214 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:31:06,214 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:06,216 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:31:06,217 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:06,218 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:31:06,218 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:06,219 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:31:06,219 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:07,931 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:31:07,931 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:07,932 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:31:07,932 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:07,934 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:31:07,934 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:07,935 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:31:07,935 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:18,013 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:31:18,013 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:18,015 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:31:18,015 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:18,016 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:31:18,016 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:18,017 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:31:18,018 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:18,019 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\fetch|get_params: 'AccountID'
+2025-01-13 13:31:18,019 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\fetch|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:18,023 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\fetch|get_params: 'AccountM_UID'
+2025-01-13 13:31:18,023 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\fetch|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:18,025 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:31:18,025 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:18,027 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:31:18,027 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:18,028 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:31:18,028 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object
+2025-01-13 13:31:18,030 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_params: 'branch_id'
+2025-01-13 13:31:18,030 - canteen_api - ERROR - D:\Innalytics\lucky_canteen_api-main\lucky_canteen_api\filter|get_proc: cannot unpack non-iterable NoneType object

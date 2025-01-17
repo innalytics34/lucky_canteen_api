@@ -676,6 +676,25 @@ fetch_config = {
         "data_source": "Report_RawMaterialCurrentStock",
         "params": []
     },
+
+"Menu_Report": {
+        "data_source": "Report_CanteenMenu",
+        "params": [
+            {
+                "label": "uid",
+                "source": "request"
+            }
+        ]
+    },
+"Menu_ReportList": {
+        "data_source": "Report_CanteenMenuList",
+        "params": [
+            {
+                "label": "uid",
+                "source": "request"
+            }
+        ]
+    },
     "CompanyDetails": {
         "data_source": "ReportCompanyDetails",
         "params": [
